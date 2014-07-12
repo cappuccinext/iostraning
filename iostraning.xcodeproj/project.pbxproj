@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		641F268A197023BD00E9418F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641F2689197023BD00E9418F /* MapKit.framework */; };
+		641F268C1970240E00E9418F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641F268B1970240E00E9418F /* CoreLocation.framework */; };
+		6420418C197102DC00AD9855 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6420418B197102DC00AD9855 /* MapViewController.m */; };
+		642041901971298D00AD9855 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6420418F1971298D00AD9855 /* MyAnnotation.m */; };
 		64A97551196D95BF001CD31C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97550196D95BF001CD31C /* main.m */; };
 		64A97554196D95BF001CD31C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97553196D95BF001CD31C /* AppDelegate.m */; };
 		64A97557196D95BF001CD31C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97556196D95BF001CD31C /* ViewController.m */; };
 		64A9755A196D95BF001CD31C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64A97558196D95BF001CD31C /* Main.storyboard */; };
 		64A9755C196D95BF001CD31C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64A9755B196D95BF001CD31C /* Images.xcassets */; };
 		64A97568196D95BF001CD31C /* iostraningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97567196D95BF001CD31C /* iostraningTests.m */; };
+		64A97586196D9E57001CD31C /* SpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97584196D9E57001CD31C /* SpotViewController.m */; };
+		64A97587196D9E57001CD31C /* SpotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A97585196D9E57001CD31C /* SpotViewController.xib */; };
+		64A9758B196D9E6F001CD31C /* GenreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97589196D9E6F001CD31C /* GenreViewController.m */; };
+		64A9758C196D9E6F001CD31C /* GenreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A9758A196D9E6F001CD31C /* GenreViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		641F2689197023BD00E9418F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		641F268B1970240E00E9418F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6420418A197102DC00AD9855 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		6420418B197102DC00AD9855 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		6420418E1971298D00AD9855 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
+		6420418F1971298D00AD9855 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		64A9754B196D95BF001CD31C /* iostraning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iostraning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A9754F196D95BF001CD31C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64A97550196D95BF001CD31C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -38,6 +52,12 @@
 		64A97561196D95BF001CD31C /* iostraningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iostraningTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64A97566196D95BF001CD31C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64A97567196D95BF001CD31C /* iostraningTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iostraningTests.m; sourceTree = "<group>"; };
+		64A97583196D9E57001CD31C /* SpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotViewController.h; sourceTree = "<group>"; };
+		64A97584196D9E57001CD31C /* SpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotViewController.m; sourceTree = "<group>"; };
+		64A97585196D9E57001CD31C /* SpotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotViewController.xib; sourceTree = "<group>"; };
+		64A97588196D9E6F001CD31C /* GenreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenreViewController.h; sourceTree = "<group>"; };
+		64A97589196D9E6F001CD31C /* GenreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenreViewController.m; sourceTree = "<group>"; };
+		64A9758A196D9E6F001CD31C /* GenreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GenreViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				641F268C1970240E00E9418F /* CoreLocation.framework in Frameworks */,
+				641F268A197023BD00E9418F /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,9 +80,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6420418D197102EC00AD9855 /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				641F2689197023BD00E9418F /* MapKit.framework */,
+				641F268B1970240E00E9418F /* CoreLocation.framework */,
+			);
+			name = frameworks;
+			sourceTree = "<group>";
+		};
 		64A97542196D95BE001CD31C = {
 			isa = PBXGroup;
 			children = (
+				6420418D197102EC00AD9855 /* frameworks */,
 				64A9754D196D95BF001CD31C /* iostraning */,
 				64A97564196D95BF001CD31C /* iostraningTests */,
 				64A9754C196D95BF001CD31C /* Products */,
@@ -84,8 +116,18 @@
 				64A97555196D95BF001CD31C /* ViewController.h */,
 				64A97556196D95BF001CD31C /* ViewController.m */,
 				64A97558196D95BF001CD31C /* Main.storyboard */,
+				6420418A197102DC00AD9855 /* MapViewController.h */,
+				6420418B197102DC00AD9855 /* MapViewController.m */,
+				6420418E1971298D00AD9855 /* MyAnnotation.h */,
+				6420418F1971298D00AD9855 /* MyAnnotation.m */,
 				64A9755B196D95BF001CD31C /* Images.xcassets */,
 				64A9754E196D95BF001CD31C /* Supporting Files */,
+				64A97583196D9E57001CD31C /* SpotViewController.h */,
+				64A97584196D9E57001CD31C /* SpotViewController.m */,
+				64A97585196D9E57001CD31C /* SpotViewController.xib */,
+				64A97588196D9E6F001CD31C /* GenreViewController.h */,
+				64A97589196D9E6F001CD31C /* GenreViewController.m */,
+				64A9758A196D9E6F001CD31C /* GenreViewController.xib */,
 			);
 			path = iostraning;
 			sourceTree = "<group>";
@@ -165,6 +207,12 @@
 				TargetAttributes = {
 					64A9754A196D95BF001CD31C = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = GX6UTM4UNL;
+						SystemCapabilities = {
+							com.apple.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					64A97560196D95BF001CD31C = {
 						CreatedOnToolsVersion = 6.0;
@@ -196,6 +244,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64A9758C196D9E6F001CD31C /* GenreViewController.xib in Resources */,
+				64A97587196D9E57001CD31C /* SpotViewController.xib in Resources */,
 				64A9755A196D95BF001CD31C /* Main.storyboard in Resources */,
 				64A9755C196D95BF001CD31C /* Images.xcassets in Resources */,
 			);
@@ -215,7 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64A9758B196D9E6F001CD31C /* GenreViewController.m in Sources */,
+				64A97586196D9E57001CD31C /* SpotViewController.m in Sources */,
 				64A97557196D95BF001CD31C /* ViewController.m in Sources */,
+				6420418C197102DC00AD9855 /* MapViewController.m in Sources */,
+				642041901971298D00AD9855 /* MyAnnotation.m in Sources */,
 				64A97554196D95BF001CD31C /* AppDelegate.m in Sources */,
 				64A97551196D95BF001CD31C /* main.m in Sources */,
 			);
@@ -334,9 +388,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iostraning/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -345,9 +403,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = iostraning/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -406,6 +468,7 @@
 				64A9756D196D95BF001CD31C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		64A9756E196D95BF001CD31C /* Build configuration list for PBXNativeTarget "iostraningTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +477,7 @@
 				64A97570196D95BF001CD31C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
