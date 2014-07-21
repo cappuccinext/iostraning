@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TWRCharts/TWRChart.h>
 #import <CoreLocation/CoreLocation.h>
+#import "XYPieChart.h"
 
-@interface GraphViewController : UIViewController<CLLocationManagerDelegate>{
+@interface GraphViewController : UIViewController<CLLocationManagerDelegate,XYPieChartDelegate, XYPieChartDataSource>{
     
     CLLocationManager	*locationManager_;
     int limit;
@@ -18,5 +18,8 @@
     NSMutableArray      *distance_;
 }
 
-@property(strong, nonatomic) TWRChartView *chartView;
+@property (strong, nonatomic) IBOutlet XYPieChart *pieChart;
+@property(nonatomic, strong) NSMutableArray *slices;
+@property(nonatomic, strong) NSArray        *sliceColors;
+
 @end

@@ -11,6 +11,11 @@
 		641F268C1970240E00E9418F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 641F268B1970240E00E9418F /* CoreLocation.framework */; };
 		6420418C197102DC00AD9855 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6420418B197102DC00AD9855 /* MapViewController.m */; };
 		642041901971298D00AD9855 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6420418F1971298D00AD9855 /* MyAnnotation.m */; };
+		644438441978B4AD00FC3FA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644438431978B4AD00FC3FA4 /* Foundation.framework */; };
+		644438461978B51200FC3FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644438451978B51200FC3FA4 /* UIKit.framework */; };
+		644438481978B55000FC3FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644438471978B55000FC3FA4 /* CoreGraphics.framework */; };
+		6463E9C5197A48BE00F09CB4 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6463E9C4197A48BE00F09CB4 /* XYPieChart.m */; };
+		6463E9C7197A4C4E00F09CB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6463E9C6197A4C4E00F09CB4 /* QuartzCore.framework */; };
 		648FA5DE1971EB090065085C /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 648FA5DC1971EB090065085C /* GraphViewController.m */; };
 		648FA5DF1971EB090065085C /* GraphViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 648FA5DD1971EB090065085C /* GraphViewController.xib */; };
 		64A97551196D95BF001CD31C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97550196D95BF001CD31C /* main.m */; };
@@ -21,6 +26,7 @@
 		64A97568196D95BF001CD31C /* iostraningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97567196D95BF001CD31C /* iostraningTests.m */; };
 		64A97586196D9E57001CD31C /* SpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97584196D9E57001CD31C /* SpotViewController.m */; };
 		64A97587196D9E57001CD31C /* SpotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A97585196D9E57001CD31C /* SpotViewController.xib */; };
+		64E81288197A443700FD6C70 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E81287197A443700FD6C70 /* iAd.framework */; };
 		A83ADBED094B4800A527772A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FC2D324B0A4B4F9B42118D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +49,12 @@
 		6420418B197102DC00AD9855 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		6420418E1971298D00AD9855 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		6420418F1971298D00AD9855 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
+		644438431978B4AD00FC3FA4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		644438451978B51200FC3FA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		644438471978B55000FC3FA4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6463E9C3197A48BE00F09CB4 /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
+		6463E9C4197A48BE00F09CB4 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
+		6463E9C6197A4C4E00F09CB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		648FA5DB1971EB090065085C /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
 		648FA5DC1971EB090065085C /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
 		648FA5DD1971EB090065085C /* GraphViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraphViewController.xib; sourceTree = "<group>"; };
@@ -61,6 +73,7 @@
 		64A97583196D9E57001CD31C /* SpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotViewController.h; sourceTree = "<group>"; };
 		64A97584196D9E57001CD31C /* SpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotViewController.m; sourceTree = "<group>"; };
 		64A97585196D9E57001CD31C /* SpotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotViewController.xib; sourceTree = "<group>"; };
+		64E81287197A443700FD6C70 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +81,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6463E9C7197A4C4E00F09CB4 /* QuartzCore.framework in Frameworks */,
+				64E81288197A443700FD6C70 /* iAd.framework in Frameworks */,
+				644438481978B55000FC3FA4 /* CoreGraphics.framework in Frameworks */,
+				644438461978B51200FC3FA4 /* UIKit.framework in Frameworks */,
+				644438441978B4AD00FC3FA4 /* Foundation.framework in Frameworks */,
 				641F268C1970240E00E9418F /* CoreLocation.framework in Frameworks */,
 				641F268A197023BD00E9418F /* MapKit.framework in Frameworks */,
 				A83ADBED094B4800A527772A /* libPods.a in Frameworks */,
@@ -87,29 +105,35 @@
 		1BB7FBB2F0F74BAC9D51C803 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6463E9C6197A4C4E00F09CB4 /* QuartzCore.framework */,
+				64E81287197A443700FD6C70 /* iAd.framework */,
+				644438471978B55000FC3FA4 /* CoreGraphics.framework */,
+				641F2689197023BD00E9418F /* MapKit.framework */,
+				641F268B1970240E00E9418F /* CoreLocation.framework */,
+				644438451978B51200FC3FA4 /* UIKit.framework */,
+				644438431978B4AD00FC3FA4 /* Foundation.framework */,
 				37FC2D324B0A4B4F9B42118D /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6420418D197102EC00AD9855 /* frameworks */ = {
+		6463E9C2197A48BE00F09CB4 /* XYPieChart */ = {
 			isa = PBXGroup;
 			children = (
-				641F2689197023BD00E9418F /* MapKit.framework */,
-				641F268B1970240E00E9418F /* CoreLocation.framework */,
+				6463E9C3197A48BE00F09CB4 /* XYPieChart.h */,
+				6463E9C4197A48BE00F09CB4 /* XYPieChart.m */,
 			);
-			name = frameworks;
+			path = XYPieChart;
 			sourceTree = "<group>";
 		};
 		64A97542196D95BE001CD31C = {
 			isa = PBXGroup;
 			children = (
-				6420418D197102EC00AD9855 /* frameworks */,
 				64A9754D196D95BF001CD31C /* iostraning */,
 				64A97564196D95BF001CD31C /* iostraningTests */,
 				64A9754C196D95BF001CD31C /* Products */,
-				25F0A4D4FB0C4436916DA421 /* Pods.xcconfig */,
 				1BB7FBB2F0F74BAC9D51C803 /* Frameworks */,
+				25F0A4D4FB0C4436916DA421 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +149,7 @@
 		64A9754D196D95BF001CD31C /* iostraning */ = {
 			isa = PBXGroup;
 			children = (
+				6463E9C2197A48BE00F09CB4 /* XYPieChart */,
 				648FA5DB1971EB090065085C /* GraphViewController.h */,
 				648FA5DC1971EB090065085C /* GraphViewController.m */,
 				648FA5DD1971EB090065085C /* GraphViewController.xib */,
@@ -137,11 +162,11 @@
 				6420418B197102DC00AD9855 /* MapViewController.m */,
 				6420418E1971298D00AD9855 /* MyAnnotation.h */,
 				6420418F1971298D00AD9855 /* MyAnnotation.m */,
-				64A9755B196D95BF001CD31C /* Images.xcassets */,
-				64A9754E196D95BF001CD31C /* Supporting Files */,
 				64A97583196D9E57001CD31C /* SpotViewController.h */,
 				64A97584196D9E57001CD31C /* SpotViewController.m */,
 				64A97585196D9E57001CD31C /* SpotViewController.xib */,
+				64A9755B196D95BF001CD31C /* Images.xcassets */,
+				64A9754E196D95BF001CD31C /* Supporting Files */,
 			);
 			path = iostraning;
 			sourceTree = "<group>";
@@ -314,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6463E9C5197A48BE00F09CB4 /* XYPieChart.m in Sources */,
 				64A97586196D9E57001CD31C /* SpotViewController.m in Sources */,
 				64A97557196D95BF001CD31C /* ViewController.m in Sources */,
 				6420418C197102DC00AD9855 /* MapViewController.m in Sources */,

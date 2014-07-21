@@ -92,7 +92,7 @@
     
     //NSLog(@"%@",responseURL);
     
-    NSArray *array = @[];
+    NSArray *arrNAME = @[];
     NSArray *arrURL = @[];
     
     //nsdictionaryを複数作る
@@ -101,10 +101,10 @@
     //NSArrayが要素となっているNSArrayを分解してNSStringを抽出し、新しいNSArrayを生成
     for (NSArray *data in responseNAME) {
         if ([data count] == 0) {
-            array = [array arrayByAddingObject:@"NODATA"];
+            arrNAME = [arrNAME arrayByAddingObject:@"NODATA"];
             //NSLog(@"NODATA");
         }else{
-            array = [array arrayByAddingObject:[data objectAtIndex:0]];
+            arrNAME = [arrNAME arrayByAddingObject:[data objectAtIndex:0]];
             //NSLog(@"name = %@",[data objectAtIndex:0]);
         }
     }
@@ -133,7 +133,7 @@
         NSLog(@"ERROR!");
     }else{
     for (int i = 0; i < limit ; i++) {
-        NSDictionary *mdic = [NSDictionary dictionaryWithObjectsAndKeys:[array objectAtIndex:i]
+        NSDictionary *mdic = [NSDictionary dictionaryWithObjectsAndKeys:[arrNAME objectAtIndex:i]
                               ,@"GENRE"
                               ,[[venues_ objectAtIndex:i]objectForKey:@"name"]
                               ,@"SPOT"

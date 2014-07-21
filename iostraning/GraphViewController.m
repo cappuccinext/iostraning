@@ -7,7 +7,7 @@
 //
 
 #import "GraphViewController.h"
-#import "ISRemoveNull.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface GraphViewController ()
 @property (nonatomic, strong) CAGradientLayer *gradientLayer;
@@ -15,6 +15,8 @@
 @end
 
 @implementation GraphViewController
+
+@synthesize pieChart = _pieChart;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,20 +32,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"Charts";
-    
-    // Chart View
-    _chartView = [[TWRChartView alloc] initWithFrame:CGRectMake(0, 224, 320, 300)];
-    _chartView.backgroundColor = [UIColor orangeColor];
-    
-    // User interaction is disabled by default. You can enable it again if you want
-    //_chartView.userInteractionEnabled = YES;
-    
+    //タイトル表示
+    self.title = @"ジャンル別グラフ表示";
+    ////グラデーション部分（アイコン表示部分）の作成
     // レイヤーの作成
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
     // レイヤーサイズをビューのサイズをそろえる
-    gradient.frame = CGRectMake(0, 0, 320, 224);
+    gradient.frame = CGRectMake(0, 360, 320, 180);
     
     // 開始色と終了色を設定
     gradient.colors = @[
@@ -55,16 +51,7 @@
     // レイヤーを追加
     [self.view.layer insertSublayer:gradient atIndex:0];
     
-    // Load chart by using a ChartJS javascript file
-    //NSString *jsFilePath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"js"];
-    //[_chartView setChartJsFilePath:jsFilePath];
-    
-    // Add the chart view to the controller's view
-
-    
-    
-    [self.view addSubview:_chartView];
-    
+    ////現在地の取得処理の開始部分
     // 現在地取得開始
     locationManager_ = [[CLLocationManager alloc] init];
     [locationManager_ setDelegate:self];
@@ -72,6 +59,48 @@
     locationManager_.distanceFilter = 25.0f;//25m移動するごとに測位値を返却する
     [locationManager_ startUpdatingLocation];
     
+    ////グラフ表示部分
+    self.slices = [NSMutableArray arrayWithCapacity:10];
+    
+    for(int i = 0; i < 5; i ++)
+    {
+        NSNumber *one = [NSNumber numberWithInt:rand()%10];
+        [_slices addObject:one];
+    }
+    
+    [self.pieChart setDelegate:self];
+    [self.pieChart setDataSource:self];
+    [self.pieChart setPieCenter:CGPointMake(146,146)];
+    
+    [self.pieChart setShowPercentage:NO];
+    [self.pieChart setLabelColor:[UIColor blackColor]];
+    
+    self.sliceColors =[NSArray arrayWithObjects:
+                       [UIColor redColor],
+                       [UIColor orangeColor],
+                       [UIColor greenColor],
+                       [UIColor yellowColor],
+                       [UIColor purpleColor],nil];
+    
+    //NSLog(@"slices = %@",_sliceColors);
+    
+}
+
+- (void)viewDidUnload
+{
+    [self setPieChart:nil];
+    [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.pieChart reloadData];
 }
 
 // GPSの位置情報が更新されたら呼ばれる
@@ -146,7 +175,7 @@
     NSArray *responseURL = [venues_ valueForKeyPath:@"categories.icon.prefix"];
     //NSLog(@"%@",responseJSON);
     
-    NSArray *array = @[];
+    NSArray *arrNAME = @[];
     NSArray *arrURL = @[];
     
     //nsdictionaryを複数作る
@@ -156,11 +185,9 @@
     //JSONで入れ子になっている要素がグループになっている場合に、Stringで格納されていないため、この処理を行う必要が有る
     for (NSArray *data in responseJSON) {
         if ([data count] == 0) {
-            array = [array arrayByAddingObject:@"NODATA"];
-            //NSLog(@"NODATA");
+            arrNAME = [arrNAME arrayByAddingObject:@"NODATA"];
         }else{
-            array = [array arrayByAddingObject:[data objectAtIndex:0]];
-            //NSLog(@"name = %@",[data objectAtIndex:0]);
+            arrNAME = [arrNAME arrayByAddingObject:[data objectAtIndex:0]];
         }
     }
     
@@ -168,19 +195,19 @@
     for (NSArray *data in responseURL) {
         if ([data count] == 0) {
             arrURL = [arrURL arrayByAddingObject:@"NODATA"];
-            //NSLog(@"NODATA");
         }else{
             arrURL = [arrURL arrayByAddingObject:[data objectAtIndex:0]];
-            //NSLog(@"name = %@",[data objectAtIndex:0]);
         }
     }
     //検証用のNSLog *************** データ確認用 ****************
-    NSLog(@"array = %@", arrURL);
+    //NSLog(@"array = %@", arrURL);
     
     NSString *samplepath;
-    NSArray *pathcomponents;
+    NSArray *arrTYPE;
+    NSArray *arrCATEGORY;
     
-    pathcomponents = @[];
+    arrTYPE = @[];
+    arrCATEGORY = @[];
     
     int shop_c = 0;
     int food_c = 0;
@@ -193,38 +220,46 @@
     int test6 = 0;
     int test7 = 0;
 
-    
-    
-    //NODATAの場合はオブジェクトが存在しないので落ちる→NODATAの場合は適当なデータを埋め込む
+    //4番目の区切りの内容（施設タイプ）を抜き出す
     for (int i = 0; i < limit ; i++){
         if ([[arrURL objectAtIndex:i] isEqual:@"NODATA"]) {
-            pathcomponents = [pathcomponents arrayByAddingObject:@"NODATA"];
+            arrTYPE = [arrTYPE arrayByAddingObject:@"NODATA"];
         }else{
             samplepath = [arrURL objectAtIndex:i];
             NSArray *temparr;
             temparr = [samplepath pathComponents];
-            NSLog(@"%@",[temparr objectAtIndex:4]);
-            pathcomponents = [pathcomponents arrayByAddingObject:[temparr objectAtIndex:4]];
+            arrTYPE = [arrTYPE arrayByAddingObject:[temparr objectAtIndex:4]];
         }
     }
-    //NSLog(@"%@",[pathcomponents description]);
+    //5番目の区切りの内容（施設詳細タイプ）を抜き出す
+    for (int i = 0; i < limit ; i++){
+        if ([[arrURL objectAtIndex:i] isEqual:@"NODATA"]) {
+            arrCATEGORY = [arrCATEGORY arrayByAddingObject:@"NODATA"];
+        }else{
+            samplepath = [arrURL objectAtIndex:i];
+            NSArray *temparr;
+            temparr = [samplepath pathComponents];
+            arrCATEGORY = [arrCATEGORY arrayByAddingObject:[temparr objectAtIndex:5]];
+        }
+    }
+
     
     for (int i= 0 ; i<limit; i++) {
-        if ([[pathcomponents objectAtIndex:i]  isEqual: @"shops"]) {
+        if ([[arrTYPE objectAtIndex:i]  isEqual: @"shops"]) {
             shop_c++;
-        }else if ([[pathcomponents objectAtIndex:i]  isEqual: @"food"]){
+        }else if ([[arrTYPE objectAtIndex:i]  isEqual: @"food"]){
             food_c++;
         }else{
             other_c++;
         }
     }
-    NSLog(@"shop %d,food %d,other %d",shop_c,food_c,other_c);
+    //NSLog(@"shop %d,food %d,other %d",shop_c,food_c,other_c);
     
     NSArray *dataArray = [NSArray array];
     
     //dictinaryWithOptionsAndKeys
     for (int i = 0; i < limit ; i++) {
-        NSDictionary *mdic = [NSDictionary dictionaryWithObjectsAndKeys:[array objectAtIndex:i]
+        NSDictionary *mdic = [NSDictionary dictionaryWithObjectsAndKeys:[arrNAME objectAtIndex:i]
                               ,@"GENRE"
                               ,[[venues_ objectAtIndex:i]objectForKey:@"name"]
                               ,@"SPOT"
@@ -232,62 +267,61 @@
                               ,@"ID"
                               ,[distance_ objectAtIndex:i]
                               ,@"DISTANCE"
+                              ,[arrTYPE objectAtIndex:i]
+                              ,@"TYPE"
+                              ,[arrCATEGORY objectAtIndex:i]
+                              ,@"CATEGORY"
                               , nil];
         dataArray = [dataArray arrayByAddingObject:mdic];
     }
     
-    
-    //NSSortDescriptor *descriptor1=[[NSSortDescriptor alloc] initWithKey:@"GENRE" ascending:YES];
-    
-    NSSortDescriptor *descriptor2=[[NSSortDescriptor alloc] initWithKey:@"DISTANCE.intValue" ascending:YES];
-    
-    
-    //NSArray *sortedArr = [dataArray sortedArrayUsingDescriptors:@[descriptor1]];
-    NSArray *sortedArr = [dataArray sortedArrayUsingDescriptors:@[descriptor2]];
-    
-    //NSLog(@"%@",[sortedArr description]);
-    
+    NSLog(@"%@",dataArray);
 #pragma mark - Draw Pie Chart
-    // Values
+    [_slices replaceObjectAtIndex:0 withObject:[NSNumber numberWithInt:shop_c]];
+    [_slices replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:food_c]];
+    [_slices replaceObjectAtIndex:2 withObject:[NSNumber numberWithInt:other_c]];
+    [_slices replaceObjectAtIndex:3 withObject:[NSNumber numberWithInt:rand()%10]];
+    [_slices replaceObjectAtIndex:4 withObject:[NSNumber numberWithInt:rand()%10]];
     
-    NSArray *values = @[[NSNumber numberWithInt:shop_c]
-                        ,[NSNumber numberWithInt:food_c]
-                        ,[NSNumber numberWithInt:other_c]
-                        ,[NSNumber numberWithInt:test1]
-                        ,[NSNumber numberWithInt:test2]
-                        ,[NSNumber numberWithInt:test3]
-                        ,[NSNumber numberWithInt:test4]
-                        ,[NSNumber numberWithInt:test5]
-                        ,[NSNumber numberWithInt:test6]
-                        ,[NSNumber numberWithInt:test7]
-                        ];
-    
-    
-    //NSArray *values = @[@20, @30, @15, @5];
-    
-    // Colors
-    UIColor *color1 = [UIColor magentaColor];
-    UIColor *color2 = [UIColor greenColor];
-    UIColor *color3 = [UIColor blueColor];
-    UIColor *color4 = [UIColor yellowColor];
-    UIColor *color5 = [UIColor purpleColor];
-    UIColor *color6 = [UIColor redColor];
-    UIColor *color7 = [UIColor magentaColor];
-    UIColor *color8 = [UIColor greenColor];
-    UIColor *color9 = [UIColor yellowColor];
-    UIColor *color10 = [UIColor blueColor];
-    
-    NSArray *colors = @[color1, color2, color3, color4,color5,color6,color7,color8,color9,color10];
-    
-    // Doughnut Chart
-    TWRCircularChart *pieChart = [[TWRCircularChart alloc] initWithValues:values
-                                                                   colors:colors
-                                                                     type:TWRCircularChartTypeDoughnut
-                                                                 animated:NO];
-    
-    // You can even leverage callbacks when chart animation ends!
-    [_chartView loadCircularChart:pieChart];
+    [self.pieChart reloadData];
+
 }
+
+#pragma mark - XYPieChart Data Source
+
+- (NSUInteger)numberOfSlicesInPieChart:(XYPieChart *)pieChart
+{
+    return self.slices.count;
+}
+
+- (CGFloat)pieChart:(XYPieChart *)pieChart valueForSliceAtIndex:(NSUInteger)index
+{
+    return [[self.slices objectAtIndex:index] intValue];
+}
+
+- (UIColor *)pieChart:(XYPieChart *)pieChart colorForSliceAtIndex:(NSUInteger)index
+{
+    return [self.sliceColors objectAtIndex:(index % self.sliceColors.count)];
+}
+
+#pragma mark - XYPieChart Delegate
+- (void)pieChart:(XYPieChart *)pieChart willSelectSliceAtIndex:(NSUInteger)index
+{
+    NSLog(@"will select slice at index %lu",(unsigned long)index);
+}
+- (void)pieChart:(XYPieChart *)pieChart willDeselectSliceAtIndex:(NSUInteger)index
+{
+    NSLog(@"will deselect slice at index %lu",(unsigned long)index);
+}
+- (void)pieChart:(XYPieChart *)pieChart didDeselectSliceAtIndex:(NSUInteger)index
+{
+    NSLog(@"did deselect slice at index %lu",(unsigned long)index);
+}
+- (void)pieChart:(XYPieChart *)pieChart didSelectSliceAtIndex:(NSUInteger)index
+{
+    NSLog(@"did select slice at index %lu",(unsigned long)index);
+}
+
 
 - (void)didReceiveMemoryWarning
 {

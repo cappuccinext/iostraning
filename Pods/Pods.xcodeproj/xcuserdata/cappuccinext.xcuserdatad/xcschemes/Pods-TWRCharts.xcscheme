@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4F3A7811A2BF40C7BB81DA9F"
+               BlueprintIdentifier = "1DFA9297086F42A58B3FA17B"
                BuildableName = "libPods-TWRCharts.a"
                BlueprintName = "Pods-TWRCharts"
                ReferencedContainer = "container:Pods.xcodeproj">

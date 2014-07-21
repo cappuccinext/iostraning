@@ -124,6 +124,7 @@
     if (pieChart.type == TWRCircularChartTypePie) {
         retString = [retString stringByAppendingString:@"var myLine = new Chart(context).Pie(pieChartData, options);"];
     } else if (pieChart.type == TWRCircularChartTypeDoughnut) {
+        NSLog(@"I'm Doughnut");
         retString = [retString stringByAppendingString:@"var myLine = new Chart(context).Doughnut(pieChartData,options);"];
     }
     
