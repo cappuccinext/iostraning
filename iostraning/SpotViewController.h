@@ -10,8 +10,6 @@
 #import <CoreLocation/CoreLocation.h>
 
 @interface SpotViewController : UITableViewController<CLLocationManagerDelegate>{
-    NSArray *dataMain;
-    NSArray *dataDetail;
     CLLocationManager	*locationManager_;
     NSArray *sendArr;
     

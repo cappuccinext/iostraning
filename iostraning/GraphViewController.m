@@ -1,6 +1,6 @@
 //
 //  GraphViewController.m
-//  
+//
 //
 //  Created by cappuccinext on 2014/07/13.
 //
@@ -44,7 +44,7 @@
     // 開始色と終了色を設定
     gradient.colors = @[
                         // 開始色
-                    (id)[UIColor whiteColor].CGColor,
+                        (id)[UIColor whiteColor].CGColor,
                         // 終了色
                         (id)[UIColor orangeColor].CGColor];
     
@@ -110,6 +110,21 @@
 {
     NSError *error;
     // 緯度・経度取得
+    
+    NSDate *now = [[NSDate date] dateByAddingTimeInterval:-5*24*60*60];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger flags;
+    NSDateComponents *comps;
+    
+    flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour ;
+    comps = [calendar components:flags fromDate:now];
+    
+    NSInteger year = comps.year;
+    NSInteger month = comps.month;
+    NSInteger day = comps.day;
+    
+    
     CLLocationDegrees latitude = newLocation.coordinate.latitude;
     CLLocationDegrees longitude = newLocation.coordinate.longitude;
     limit = 30;
@@ -117,8 +132,7 @@
     CLLocation *Apoint = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
     
     // APIからベニューリストを取得
-    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=20140627", latitude, longitude,limit];
-    //NSLog(@"urlString = %@", urlString);
+    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=%04ld%02ld%02ld", latitude, longitude,limit,(long)year,(long)month,(long)day];
     NSURL *url = [NSURL URLWithString:urlString];
     NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
     NSData *jsonData = [response dataUsingEncoding:NSUTF32BigEndianStringEncoding];
@@ -162,7 +176,6 @@
         }else{
             NSLog(@"Error: %@", [error localizedDescription]);
         }
-        
         [self loadPieChart];
     }
 }
@@ -219,7 +232,7 @@
     int test5 = 0;
     int test6 = 0;
     int test7 = 0;
-
+    
     //4番目の区切りの内容（施設タイプ）を抜き出す
     for (int i = 0; i < limit ; i++){
         if ([[arrURL objectAtIndex:i] isEqual:@"NODATA"]) {
@@ -242,7 +255,7 @@
             arrCATEGORY = [arrCATEGORY arrayByAddingObject:[temparr objectAtIndex:5]];
         }
     }
-
+    
     
     for (int i= 0 ; i<limit; i++) {
         if ([[arrTYPE objectAtIndex:i]  isEqual: @"shops"]) {
@@ -275,7 +288,7 @@
         dataArray = [dataArray arrayByAddingObject:mdic];
     }
     
-    NSLog(@"%@",dataArray);
+    //NSLog(@"%@",dataArray);
 #pragma mark - Draw Pie Chart
     [_slices replaceObjectAtIndex:0 withObject:[NSNumber numberWithInt:shop_c]];
     [_slices replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:food_c]];
@@ -284,7 +297,7 @@
     [_slices replaceObjectAtIndex:4 withObject:[NSNumber numberWithInt:rand()%10]];
     
     [self.pieChart reloadData];
-
+    
 }
 
 #pragma mark - XYPieChart Data Source
@@ -330,14 +343,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
