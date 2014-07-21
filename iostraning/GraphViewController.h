@@ -16,6 +16,8 @@
     int limit;
     NSMutableArray      *venues_;
     NSMutableArray      *distance_;
+    NSMutableArray      *lat_;
+    NSMutableArray      *lng_;
 }
 
 @property (strong, nonatomic) IBOutlet XYPieChart *pieChart;

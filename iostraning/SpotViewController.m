@@ -19,9 +19,6 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
     self.navigationItem.title = @"スポットリスト";
     
     // 現在地取得開始
@@ -30,9 +27,6 @@
     locationManager_.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
     locationManager_.distanceFilter = 25.0f;//25m移動するごとに測位値を返却する
     [locationManager_ startUpdatingLocation];
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,7 +98,7 @@
     if (dataArray == nil) {
         NSLog(@"dataArray ERROR!");
     }else{
-        for (int i = 0; i < limit ; i++) {
+        for (int i = 0; i < [distance_ count] ; i++) {
             NSDictionary *mdic = [NSDictionary dictionaryWithObjectsAndKeys:[arrNAME objectAtIndex:i]
                                   ,@"GENRE"
                                   ,[[venues_ objectAtIndex:i]objectForKey:@"name"]
@@ -183,7 +177,7 @@
 #pragma mark - GET JSON DATA FROM WEB
     //// APIからベニューリストを取得
     // 一度に取得する施設数を設定
-    limit = 30;
+    limit = 40;
     // URL文字列を作成
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=%04ld%02ld%02ld", latitude, longitude,limit,(long)year,(long)month,(long)day];
     // jsonデータを取得
@@ -215,7 +209,7 @@
         NSArray *spotLAT = @[];
         NSArray *spotLNG = @[];
         
-        for (int i = 0;i<limit;i++)
+        for (int i = 0;i<[responseLAT count];i++)
         {
             CLLocation *B = [[CLLocation alloc] initWithLatitude:[[responseLAT objectAtIndex:i] doubleValue] longitude:[[responseLNG objectAtIndex:i] doubleValue]];
             // ApointとBの距離を算出し(distancecFromLocation)、Bpointに代入
@@ -246,9 +240,9 @@
         }else{
             NSLog(@"Error: %@", [error localizedDescription]);
         }
+        //テーブルビューのdatasourceを再読み込みする
+        [self.tableView reloadData];
     }
-    //テーブルビューのdatasourceを再読み込みする
-    [self.tableView reloadData];
 }
 
 

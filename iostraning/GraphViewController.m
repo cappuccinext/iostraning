@@ -30,11 +30,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     
     //タイトル表示
     self.title = @"ジャンル別グラフ表示";
-    ////グラデーション部分（アイコン表示部分）の作成
+    //// グラデーション部分（アイコン表示部分）の作成
     // レイヤーの作成
     CAGradientLayer *gradient = [CAGradientLayer layer];
     
@@ -51,7 +50,7 @@
     // レイヤーを追加
     [self.view.layer insertSublayer:gradient atIndex:0];
     
-    ////現在地の取得処理の開始部分
+    //// 現在地の取得処理の開始部分
     // 現在地取得開始
     locationManager_ = [[CLLocationManager alloc] init];
     [locationManager_ setDelegate:self];
@@ -59,10 +58,10 @@
     locationManager_.distanceFilter = 25.0f;//25m移動するごとに測位値を返却する
     [locationManager_ startUpdatingLocation];
     
-    ////グラフ表示部分
+    //// グラフ表示部分
     self.slices = [NSMutableArray arrayWithCapacity:10];
     
-    for(int i = 0; i < 5; i ++)
+    for(int i = 0; i < 3; i ++)
     {
         NSNumber *one = [NSNumber numberWithInt:rand()%10];
         [_slices addObject:one];
@@ -79,8 +78,7 @@
                        [UIColor redColor],
                        [UIColor orangeColor],
                        [UIColor greenColor],
-                       [UIColor yellowColor],
-                       [UIColor purpleColor],nil];
+                       nil];
     
     //NSLog(@"slices = %@",_sliceColors);
     
@@ -110,7 +108,10 @@
 {
     NSError *error;
     // 緯度・経度取得
+#pragma mark - ACQIRING DATE
     
+    //// 取得日を作成(JSONデータ取得のための日付文字列生成 書式：yyyymmdd)
+    // 5日前の日付を生成
     NSDate *now = [[NSDate date] dateByAddingTimeInterval:-5*24*60*60];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -119,70 +120,87 @@
     
     flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour ;
     comps = [calendar components:flags fromDate:now];
-    
+    // 5日前の日付の年・月・日をそれぞれNSIntegerに格納
     NSInteger year = comps.year;
     NSInteger month = comps.month;
     NSInteger day = comps.day;
     
-    
     CLLocationDegrees latitude = newLocation.coordinate.latitude;
     CLLocationDegrees longitude = newLocation.coordinate.longitude;
-    limit = 30;
     
-    CLLocation *Apoint = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-    
-    // APIからベニューリストを取得
+#pragma mark - GET JSON DATA FROM WEB
+    //// APIからベニューリストを取得
+    // 一度に取得する施設数を設定
+    limit = 40;
+    // URL文字列を作成
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=%04ld%02ld%02ld", latitude, longitude,limit,(long)year,(long)month,(long)day];
+    // jsonデータを取得
     NSURL *url = [NSURL URLWithString:urlString];
     NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+    // 取得文字列をエンコードし、jsonDataに保存
     NSData *jsonData = [response dataUsingEncoding:NSUTF32BigEndianStringEncoding];
     
+#pragma mark - PREPARE FOR DISPLAYING TABLE VIEW DATA
+    //// JSONデータから距離、緯度、経度、ベニューの各データをプロパティに保存する
     if (jsonData == nil) {
-        NSLog(@"ERROR!");
+        // jsonDataが空の場合はエラーなので、コンソールに表示する(そのまま処理すると落ちる)
+        NSLog(@"jsonData ERROR!");
     }else{
+        //jsonDataをNSJSONSerializationによりjsonDicに辞書形式で保存する（全ての値がkey:valueで保存される）
         NSDictionary *jsonDic = [NSJSONSerialization
                                  JSONObjectWithData:jsonData
                                  options:kNilOptions
                                  error:&error];
-        
+        //jsonDicから「キーバリューコーディング(valueForKeyPathを使う)」により緯度(responseLAT)、経度(responseLNG)を抜き出す
         NSArray *responseLAT = [jsonDic valueForKeyPath:@"response.venues.location.lat"];
         NSArray *responseLNG = [jsonDic valueForKeyPath:@"response.venues.location.lng"];
-        //NSLog(@"%@,%@",[responseLAT description],[responseLNG description]);
         
+        //// 距離の算出と格納
+        // Bpointに距離が格納される
+        // spotLATとspotLNGに緯度、経度が格納される
+        CLLocation *Apoint = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
         NSArray *Bpoint = @[];
-        //距離をコンソールに表示する
-        for (int i = 0;i<limit;i++)
+        NSArray *spotLAT = @[];
+        NSArray *spotLNG = @[];
+        
+        for (int i=0 ; i < [responseLAT count] ; i++)
         {
             CLLocation *B = [[CLLocation alloc] initWithLatitude:[[responseLAT objectAtIndex:i] doubleValue] longitude:[[responseLNG objectAtIndex:i] doubleValue]];
+            // ApointとBの距離を算出し(distancecFromLocation)、Bpointに代入
             Bpoint = [Bpoint arrayByAddingObject:[NSNumber numberWithFloat:[Apoint distanceFromLocation:B]]];
-            
+            // response*** → spot*** へ配列の要素を取り出しつつ、doubleに変換して保存する
+            spotLAT = [spotLAT arrayByAddingObject:[NSNumber numberWithFloat:[[responseLAT objectAtIndex:i] doubleValue]]];
+            spotLNG = [spotLNG arrayByAddingObject:[NSNumber numberWithFloat:[[responseLNG objectAtIndex:i] doubleValue]]];
         }
-        //NSLog(@"distance = %@",[Bpoint description]);
         
         if (!error) {
-            // エラーコードをログに出力
+            //// jsonDicの要素数が0の場合、エラーコードをログに出力
             if ([jsonDic count] == 0) {
                 NSLog(@"don't access it as the index is out of bounds");
                 return;
             }else{
+                //// 取得エラーコードをNSLogに表示
                 NSInteger errorCode = [[[jsonDic objectForKey:@"meta"] objectForKey:@"code"] integerValue];
                 NSLog(@"errorCode = %ld", (long)errorCode);
-                
+                //// jsonDicのデータのうち、venuesキーで取得できるvalueをvenuesに代入し、venues_（こちらはMutableArray）にコピー
                 // 結果取得
                 NSArray *venues = [[jsonDic objectForKey:@"response"] objectForKey:@"venues"];
                 venues_ = [venues mutableCopy];
                 distance_ = [Bpoint mutableCopy];
+                lat_ = [spotLAT mutableCopy];
+                lng_ = [spotLNG mutableCopy];
             }
         }else{
             NSLog(@"Error: %@", [error localizedDescription]);
         }
+        //テーブルビューのdatasourceを再読み込みする
         [self loadPieChart];
     }
 }
 
 - (void)loadPieChart
 {
-#pragma mark - processing JSON data
+#pragma mark - PROCESSING JSON DATA
     NSArray *responseJSON = [venues_ valueForKeyPath:@"categories.name"];
     
     NSArray *responseURL = [venues_ valueForKeyPath:@"categories.icon.prefix"];
@@ -225,16 +243,9 @@
     int shop_c = 0;
     int food_c = 0;
     int other_c = 0;
-    int test1 = 0;
-    int test2 = 0;
-    int test3 = 0;
-    int test4 = 0;
-    int test5 = 0;
-    int test6 = 0;
-    int test7 = 0;
     
     //4番目の区切りの内容（施設タイプ）を抜き出す
-    for (int i = 0; i < limit ; i++){
+    for (int i = 0; i < [arrURL count] ; i++){
         if ([[arrURL objectAtIndex:i] isEqual:@"NODATA"]) {
             arrTYPE = [arrTYPE arrayByAddingObject:@"NODATA"];
         }else{
@@ -245,7 +256,7 @@
         }
     }
     //5番目の区切りの内容（施設詳細タイプ）を抜き出す
-    for (int i = 0; i < limit ; i++){
+    for (int i = 0; i < [arrURL count] ; i++){
         if ([[arrURL objectAtIndex:i] isEqual:@"NODATA"]) {
             arrCATEGORY = [arrCATEGORY arrayByAddingObject:@"NODATA"];
         }else{
@@ -255,9 +266,8 @@
             arrCATEGORY = [arrCATEGORY arrayByAddingObject:[temparr objectAtIndex:5]];
         }
     }
-    
-    
-    for (int i= 0 ; i<limit; i++) {
+
+    for (int i= 0 ; i<[arrTYPE count]; i++) {
         if ([[arrTYPE objectAtIndex:i]  isEqual: @"shops"]) {
             shop_c++;
         }else if ([[arrTYPE objectAtIndex:i]  isEqual: @"food"]){
@@ -266,12 +276,12 @@
             other_c++;
         }
     }
-    //NSLog(@"shop %d,food %d,other %d",shop_c,food_c,other_c);
+    NSLog(@"shop %d,food %d,other %d",shop_c,food_c,other_c);
     
     NSArray *dataArray = [NSArray array];
     
     //dictinaryWithOptionsAndKeys
-    for (int i = 0; i < limit ; i++) {
+    for (int i = 0; i < [distance_ count] ; i++) {
         NSDictionary *mdic = [NSDictionary dictionaryWithObjectsAndKeys:[arrNAME objectAtIndex:i]
                               ,@"GENRE"
                               ,[[venues_ objectAtIndex:i]objectForKey:@"name"]
@@ -288,13 +298,10 @@
         dataArray = [dataArray arrayByAddingObject:mdic];
     }
     
-    //NSLog(@"%@",dataArray);
-#pragma mark - Draw Pie Chart
+#pragma mark - DRAW PIE CHART
     [_slices replaceObjectAtIndex:0 withObject:[NSNumber numberWithInt:shop_c]];
     [_slices replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:food_c]];
     [_slices replaceObjectAtIndex:2 withObject:[NSNumber numberWithInt:other_c]];
-    [_slices replaceObjectAtIndex:3 withObject:[NSNumber numberWithInt:rand()%10]];
-    [_slices replaceObjectAtIndex:4 withObject:[NSNumber numberWithInt:rand()%10]];
     
     [self.pieChart reloadData];
     
