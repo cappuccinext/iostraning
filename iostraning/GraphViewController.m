@@ -69,10 +69,11 @@
     
     [self.pieChart setDelegate:self];
     [self.pieChart setDataSource:self];
-    [self.pieChart setPieCenter:CGPointMake(146,146)];
-    
+    [self.pieChart setPieCenter:CGPointMake(130,130)];
+    [self.pieChart setLabelFont:[UIFont fontWithName:@"DBLCDTempBlack" size:28]];
     [self.pieChart setShowPercentage:NO];
     [self.pieChart setLabelColor:[UIColor blackColor]];
+    [self.pieChart setLabelRadius:90];
     
     self.sliceColors =[NSArray arrayWithObjects:
                        [UIColor redColor],
@@ -131,7 +132,7 @@
 #pragma mark - GET JSON DATA FROM WEB
     //// APIからベニューリストを取得
     // 一度に取得する施設数を設定
-    limit = 40;
+    limit = 25;
     // URL文字列を作成
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=%04ld%02ld%02ld", latitude, longitude,limit,(long)year,(long)month,(long)day];
     // jsonデータを取得
@@ -191,7 +192,9 @@
                 lng_ = [spotLNG mutableCopy];
             }
         }else{
+            // jsonDataからjsonDicに変換するときにエラーが発生したときに落ちる先
             NSLog(@"Error: %@", [error localizedDescription]);
+            return;
         }
         //テーブルビューのdatasourceを再読み込みする
         [self loadPieChart];
@@ -302,6 +305,27 @@
     [_slices replaceObjectAtIndex:0 withObject:[NSNumber numberWithInt:shop_c]];
     [_slices replaceObjectAtIndex:1 withObject:[NSNumber numberWithInt:food_c]];
     [_slices replaceObjectAtIndex:2 withObject:[NSNumber numberWithInt:other_c]];
+    
+    //// アイコン拡大縮小処理
+    if (shop_c > 5) {
+        self.conviniImage.backgroundColor = [UIColor colorWithRed:0.1 green:0.5 blue:0.8 alpha:1.0];
+        [self.conviniImage.layer setCornerRadius:10];
+    }else{
+        self.conviniImage.backgroundColor = [UIColor colorWithRed:0.1 green:0.5 blue:0.8 alpha:0.5];
+        [self.conviniImage.layer setCornerRadius:10];
+    }
+    
+    self.shopImage.backgroundColor = [UIColor colorWithRed:0.8 green:0.3 blue:0.2 alpha:0.5];
+    [self.shopImage.layer setCornerRadius:10];
+    
+    self.gsImage.backgroundColor = [UIColor colorWithRed:0.5 green:0.3 blue:0.9 alpha:0.5];
+    [self.gsImage.layer setCornerRadius:10];
+    
+    self.gourmetImage.backgroundColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.2 alpha:0.5];
+    [self.gourmetImage.layer setCornerRadius:10];
+    
+    self.buildingImage.backgroundColor = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5];
+    [self.buildingImage.layer setCornerRadius:10];
     
     [self.pieChart reloadData];
     

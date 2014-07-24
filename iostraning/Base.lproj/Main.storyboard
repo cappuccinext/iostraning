@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
@@ -110,9 +111,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8L0-Lc-z6e" customClass="XYPieChart">
-                                <rect key="frame" x="14" y="60" width="292" height="292"/>
+                                <rect key="frame" x="30" y="66" width="260" height="247"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="conveni.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ik0-AQ-UEa">
+                                <rect key="frame" x="20" y="321" width="72" height="72"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shop.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-pY-T6O">
+                                <rect key="frame" x="59" y="396" width="72" height="72"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="building.png" translatesAutoresizingMaskIntoConstraints="NO" id="SUs-qM-c8e">
+                                <rect key="frame" x="228" y="321" width="72" height="72"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gs.png" translatesAutoresizingMaskIntoConstraints="NO" id="ah1-qo-xRy">
+                                <rect key="frame" x="124" y="321" width="72" height="72"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gourmet.png" translatesAutoresizingMaskIntoConstraints="NO" id="kXx-ey-Kla">
+                                <rect key="frame" x="177" y="396" width="72" height="72"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -123,7 +139,12 @@
                         <size key="landscapeSize" width="568" height="320"/>
                     </simulatedScreenMetrics>
                     <connections>
+                        <outlet property="buildingImage" destination="SUs-qM-c8e" id="bhN-gF-kMa"/>
+                        <outlet property="conviniImage" destination="Ik0-AQ-UEa" id="cET-Sh-N8f"/>
+                        <outlet property="gourmetImage" destination="kXx-ey-Kla" id="G8a-tL-2Uy"/>
+                        <outlet property="gsImage" destination="ah1-qo-xRy" id="Y1V-rj-vty"/>
                         <outlet property="pieChart" destination="8L0-Lc-z6e" id="xjG-eo-RI2"/>
+                        <outlet property="shopImage" destination="Cdg-pY-T6O" id="0UX-8G-IhL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBC-WH-EQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -161,6 +182,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2F2-Ta-Xsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2235" y="960"/>
+        </scene>
+        <!--Specified View Controller-->
+        <scene sceneID="I9p-wl-49v">
+            <objects>
+                <tableViewController id="mEP-In-VDg" customClass="SpecifiedViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="CB3-sw-zXb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" id="RCz-X0-jGq">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RCz-X0-jGq" id="s4l-Mq-kp0">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="mEP-In-VDg" id="uZS-Mj-anH"/>
+                            <outlet property="delegate" destination="mEP-In-VDg" id="2hg-QK-dNB"/>
+                        </connections>
+                    </tableView>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
+                        <size key="portraitSize" width="320" height="568"/>
+                        <size key="landscapeSize" width="568" height="320"/>
+                    </simulatedScreenMetrics>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="goZ-UJ-R44" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2099" y="1595"/>
         </scene>
         <!--スポット-->
         <scene sceneID="Tfg-jf-ufw">
@@ -201,4 +253,11 @@
             <point key="canvasLocation" x="875" y="1595"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="building.png" width="512" height="512"/>
+        <image name="conveni.png" width="512" height="512"/>
+        <image name="gourmet.png" width="512" height="512"/>
+        <image name="gs.png" width="314" height="314"/>
+        <image name="shop.png" width="512" height="512"/>
+    </resources>
 </document>

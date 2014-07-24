@@ -26,6 +26,12 @@
 		64A97568196D95BF001CD31C /* iostraningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97567196D95BF001CD31C /* iostraningTests.m */; };
 		64A97586196D9E57001CD31C /* SpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97584196D9E57001CD31C /* SpotViewController.m */; };
 		64A97587196D9E57001CD31C /* SpotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A97585196D9E57001CD31C /* SpotViewController.xib */; };
+		64BB68A0197F50E600511048 /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB689F197F50E600511048 /* shop.png */; };
+		64BB68A2197F806F00511048 /* gourmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB68A1197F806F00511048 /* gourmet.png */; };
+		64BB68A6197F841900511048 /* gs.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB68A5197F841900511048 /* gs.png */; };
+		64BB68A8197F85BB00511048 /* building.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB68A7197F85BB00511048 /* building.png */; };
+		64E67C61197DF18600F5B004 /* conveni.png in Resources */ = {isa = PBXBuildFile; fileRef = 64E67C60197DF18600F5B004 /* conveni.png */; };
+		64E67C67197E50AA00F5B004 /* SpecifiedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */; };
 		64E81288197A443700FD6C70 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E81287197A443700FD6C70 /* iAd.framework */; };
 		A83ADBED094B4800A527772A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FC2D324B0A4B4F9B42118D /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -73,6 +79,13 @@
 		64A97583196D9E57001CD31C /* SpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotViewController.h; sourceTree = "<group>"; };
 		64A97584196D9E57001CD31C /* SpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotViewController.m; sourceTree = "<group>"; };
 		64A97585196D9E57001CD31C /* SpotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotViewController.xib; sourceTree = "<group>"; };
+		64BB689F197F50E600511048 /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
+		64BB68A1197F806F00511048 /* gourmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gourmet.png; sourceTree = "<group>"; };
+		64BB68A5197F841900511048 /* gs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gs.png; sourceTree = "<group>"; };
+		64BB68A7197F85BB00511048 /* building.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building.png; sourceTree = "<group>"; };
+		64E67C60197DF18600F5B004 /* conveni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = conveni.png; sourceTree = "<group>"; };
+		64E67C65197E50AA00F5B004 /* SpecifiedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecifiedViewController.h; sourceTree = "<group>"; };
+		64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecifiedViewController.m; sourceTree = "<group>"; };
 		64E81287197A443700FD6C70 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -149,10 +162,13 @@
 		64A9754D196D95BF001CD31C /* iostraning */ = {
 			isa = PBXGroup;
 			children = (
+				64E67C68197E50CA00F5B004 /* images */,
 				6463E9C2197A48BE00F09CB4 /* XYPieChart */,
 				648FA5DB1971EB090065085C /* GraphViewController.h */,
 				648FA5DC1971EB090065085C /* GraphViewController.m */,
 				648FA5DD1971EB090065085C /* GraphViewController.xib */,
+				64E67C65197E50AA00F5B004 /* SpecifiedViewController.h */,
+				64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */,
 				64A97552196D95BF001CD31C /* AppDelegate.h */,
 				64A97553196D95BF001CD31C /* AppDelegate.m */,
 				64A97555196D95BF001CD31C /* ViewController.h */,
@@ -195,6 +211,18 @@
 				64A97566196D95BF001CD31C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		64E67C68197E50CA00F5B004 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				64BB68A7197F85BB00511048 /* building.png */,
+				64BB68A5197F841900511048 /* gs.png */,
+				64BB68A1197F806F00511048 /* gourmet.png */,
+				64BB689F197F50E600511048 /* shop.png */,
+				64E67C60197DF18600F5B004 /* conveni.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,9 +313,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64BB68A0197F50E600511048 /* shop.png in Resources */,
 				64A97587196D9E57001CD31C /* SpotViewController.xib in Resources */,
+				64BB68A8197F85BB00511048 /* building.png in Resources */,
+				64BB68A6197F841900511048 /* gs.png in Resources */,
 				648FA5DF1971EB090065085C /* GraphViewController.xib in Resources */,
 				64A9755A196D95BF001CD31C /* Main.storyboard in Resources */,
+				64BB68A2197F806F00511048 /* gourmet.png in Resources */,
+				64E67C61197DF18600F5B004 /* conveni.png in Resources */,
 				64A9755C196D95BF001CD31C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +377,7 @@
 				64A97557196D95BF001CD31C /* ViewController.m in Sources */,
 				6420418C197102DC00AD9855 /* MapViewController.m in Sources */,
 				648FA5DE1971EB090065085C /* GraphViewController.m in Sources */,
+				64E67C67197E50AA00F5B004 /* SpecifiedViewController.m in Sources */,
 				642041901971298D00AD9855 /* MyAnnotation.m in Sources */,
 				64A97554196D95BF001CD31C /* AppDelegate.m in Sources */,
 				64A97551196D95BF001CD31C /* main.m in Sources */,

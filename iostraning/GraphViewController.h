@@ -24,4 +24,10 @@
 @property(nonatomic, strong) NSMutableArray *slices;
 @property(nonatomic, strong) NSArray        *sliceColors;
 
+@property (strong, nonatomic) IBOutlet UIImageView *conviniImage;
+@property (strong, nonatomic) IBOutlet UIImageView *shopImage;
+@property (strong, nonatomic) IBOutlet UIImageView *gsImage;
+@property (strong, nonatomic) IBOutlet UIImageView *gourmetImage;
+@property (strong, nonatomic) IBOutlet UIImageView *buildingImage;
+
 @end
