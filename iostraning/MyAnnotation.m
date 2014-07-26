@@ -8,19 +8,13 @@
 
 #import "MyAnnotation.h"
 
-@implementation MyAnnotation
+@interface MyAnnotation ()
+@property CLLocationCoordinate2D coordinate;
+@end
 
-@synthesize coordinate;
-@synthesize title;
-@synthesize subtitle;
-- (id)initWithCoordinates:(CLLocationCoordinate2D)_coordinate title:(NSString *)_title subtitle:(NSString *)_subtitle;
-{
-    self = [super self];
-    if(self != nil){
-        coordinate = _coordinate;
-        title = _title;
-        subtitle = _subtitle;
-    }
+@implementation MyAnnotation
+- (id) initWithCoordinate:(CLLocationCoordinate2D)c {
+    self.coordinate = c;
     return self;
 }
 @end

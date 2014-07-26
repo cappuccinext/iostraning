@@ -12,10 +12,9 @@
 
 @interface MyAnnotation : NSObject<MKAnnotation>
 
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *subtitle;
+@property (nonatomic, copy) NSString* title;         //吹き出しに表示するタイトル
+@property (nonatomic, copy) NSString* subtitle;   //吹き出しに表示するサブタイトル
 
-- (id)initWithCoordinates:(CLLocationCoordinate2D)_coordinate title:(NSString *)_title subtitle:(NSString *)_subtitle;
+- (id) initWithCoordinate:(CLLocationCoordinate2D) coordinate;
 
 @end

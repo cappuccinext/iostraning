@@ -18,6 +18,9 @@
     NSMutableArray      *lat_;
     NSMutableArray      *lng_;
     int                 limit;
+    
+    dispatch_queue_t mainQueue;
+    dispatch_queue_t subQueue;
 }
 
 @end

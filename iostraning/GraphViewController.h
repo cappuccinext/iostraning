@@ -18,6 +18,9 @@
     NSMutableArray      *distance_;
     NSMutableArray      *lat_;
     NSMutableArray      *lng_;
+    
+    dispatch_queue_t mainQueue;
+    dispatch_queue_t subQueue;
 }
 
 @property (strong, nonatomic) IBOutlet XYPieChart *pieChart;

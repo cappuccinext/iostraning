@@ -13,9 +13,7 @@
 @interface MapViewController : UIViewController<MKMapViewDelegate>
 
 @property NSDictionary *mapDic;
-
 @property (weak, nonatomic) IBOutlet MKMapView *spotmap;
-
 @property NSString *string;
 
 @end

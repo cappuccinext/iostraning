@@ -154,6 +154,10 @@
 {
     NSError *error;
     // 緯度・経度取得
+    
+    mainQueue = dispatch_get_main_queue();
+    subQueue = dispatch_queue_create("net.sakasoinfo.iostraning.jsonqueue", 0);
+
 #pragma mark - ACQIRING DATE
     
     //// 取得日を作成(JSONデータ取得のための日付文字列生成 書式：yyyymmdd)
@@ -181,7 +185,8 @@
     // URL文字列を作成
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=%04ld%02ld%02ld", latitude, longitude,limit,(long)year,(long)month,(long)day];
     // jsonデータを取得
-    NSURL *url = [NSURL URLWithString:urlString];
+    
+    dispatch_async(subQueue, ^{NSURL *url = [NSURL URLWithString:urlString];
     NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
     // 取得文字列をエンコードし、jsonDataに保存
     NSData *jsonData = [response dataUsingEncoding:NSUTF32BigEndianStringEncoding];
@@ -196,7 +201,7 @@
         NSDictionary *jsonDic = [NSJSONSerialization
                                  JSONObjectWithData:jsonData
                                  options:kNilOptions
-                                 error:&error];
+                                 error:0];
         //jsonDicから「キーバリューコーディング(valueForKeyPathを使う)」により緯度(responseLAT)、経度(responseLNG)を抜き出す
         NSArray *responseLAT = [jsonDic valueForKeyPath:@"response.venues.location.lat"];
         NSArray *responseLNG = [jsonDic valueForKeyPath:@"response.venues.location.lng"];
@@ -241,8 +246,9 @@
             NSLog(@"Error: %@", [error localizedDescription]);
         }
         //テーブルビューのdatasourceを再読み込みする
-        [self.tableView reloadData];
+        dispatch_async(mainQueue,^{[self.tableView reloadData];});
     }
+    });
 }
 
 

@@ -107,6 +107,9 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
+    
+    mainQueue = dispatch_get_main_queue();
+    subQueue = dispatch_queue_create("net.sakasoinfo.iostraning.jsonqueue", 0);
     NSError *error;
     // 緯度・経度取得
 #pragma mark - ACQIRING DATE
@@ -136,69 +139,73 @@
     // URL文字列を作成
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=%04ld%02ld%02ld", latitude, longitude,limit,(long)year,(long)month,(long)day];
     // jsonデータを取得
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-    // 取得文字列をエンコードし、jsonDataに保存
-    NSData *jsonData = [response dataUsingEncoding:NSUTF32BigEndianStringEncoding];
     
+    dispatch_async(subQueue, ^{NSURL *url = [NSURL URLWithString:urlString];
+        NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+        // 取得文字列をエンコードし、jsonDataに保存
+        NSData *jsonData = [response dataUsingEncoding:NSUTF32BigEndianStringEncoding];
+        
 #pragma mark - PREPARE FOR DISPLAYING TABLE VIEW DATA
-    //// JSONデータから距離、緯度、経度、ベニューの各データをプロパティに保存する
-    if (jsonData == nil) {
-        // jsonDataが空の場合はエラーなので、コンソールに表示する(そのまま処理すると落ちる)
-        NSLog(@"jsonData ERROR!");
-    }else{
-        //jsonDataをNSJSONSerializationによりjsonDicに辞書形式で保存する（全ての値がkey:valueで保存される）
-        NSDictionary *jsonDic = [NSJSONSerialization
-                                 JSONObjectWithData:jsonData
-                                 options:kNilOptions
-                                 error:&error];
-        //jsonDicから「キーバリューコーディング(valueForKeyPathを使う)」により緯度(responseLAT)、経度(responseLNG)を抜き出す
-        NSArray *responseLAT = [jsonDic valueForKeyPath:@"response.venues.location.lat"];
-        NSArray *responseLNG = [jsonDic valueForKeyPath:@"response.venues.location.lng"];
-        
-        //// 距離の算出と格納
-        // Bpointに距離が格納される
-        // spotLATとspotLNGに緯度、経度が格納される
-        CLLocation *Apoint = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
-        NSArray *Bpoint = @[];
-        NSArray *spotLAT = @[];
-        NSArray *spotLNG = @[];
-        
-        for (int i=0 ; i < [responseLAT count] ; i++)
-        {
-            CLLocation *B = [[CLLocation alloc] initWithLatitude:[[responseLAT objectAtIndex:i] doubleValue] longitude:[[responseLNG objectAtIndex:i] doubleValue]];
-            // ApointとBの距離を算出し(distancecFromLocation)、Bpointに代入
-            Bpoint = [Bpoint arrayByAddingObject:[NSNumber numberWithFloat:[Apoint distanceFromLocation:B]]];
-            // response*** → spot*** へ配列の要素を取り出しつつ、doubleに変換して保存する
-            spotLAT = [spotLAT arrayByAddingObject:[NSNumber numberWithFloat:[[responseLAT objectAtIndex:i] doubleValue]]];
-            spotLNG = [spotLNG arrayByAddingObject:[NSNumber numberWithFloat:[[responseLNG objectAtIndex:i] doubleValue]]];
-        }
-        
-        if (!error) {
-            //// jsonDicの要素数が0の場合、エラーコードをログに出力
-            if ([jsonDic count] == 0) {
-                NSLog(@"don't access it as the index is out of bounds");
-                return;
-            }else{
-                //// 取得エラーコードをNSLogに表示
-                NSInteger errorCode = [[[jsonDic objectForKey:@"meta"] objectForKey:@"code"] integerValue];
-                NSLog(@"errorCode = %ld", (long)errorCode);
-                //// jsonDicのデータのうち、venuesキーで取得できるvalueをvenuesに代入し、venues_（こちらはMutableArray）にコピー
-                // 結果取得
-                NSArray *venues = [[jsonDic objectForKey:@"response"] objectForKey:@"venues"];
-                venues_ = [venues mutableCopy];
-                distance_ = [Bpoint mutableCopy];
-                lat_ = [spotLAT mutableCopy];
-                lng_ = [spotLNG mutableCopy];
-            }
+        //// JSONデータから距離、緯度、経度、ベニューの各データをプロパティに保存する
+        if (jsonData == nil) {
+            // jsonDataが空の場合はエラーなので、コンソールに表示する(そのまま処理すると落ちる)
+            NSLog(@"jsonData ERROR!");
         }else{
-            // jsonDataからjsonDicに変換するときにエラーが発生したときに落ちる先
-            NSLog(@"Error: %@", [error localizedDescription]);
-            return;
+            //jsonDataをNSJSONSerializationによりjsonDicに辞書形式で保存する（全ての値がkey:valueで保存される）
+            NSDictionary *jsonDic = [NSJSONSerialization
+                                     JSONObjectWithData:jsonData
+                                     options:kNilOptions
+                                     error:0];
+            //jsonDicから「キーバリューコーディング(valueForKeyPathを使う)」により緯度(responseLAT)、経度(responseLNG)を抜き出す
+            NSArray *responseLAT = [jsonDic valueForKeyPath:@"response.venues.location.lat"];
+            NSArray *responseLNG = [jsonDic valueForKeyPath:@"response.venues.location.lng"];
+            
+            //// 距離の算出と格納
+            // Bpointに距離が格納される
+            // spotLATとspotLNGに緯度、経度が格納される
+            CLLocation *Apoint = [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+            NSArray *Bpoint = @[];
+            NSArray *spotLAT = @[];
+            NSArray *spotLNG = @[];
+            
+            for (int i=0 ; i < [responseLAT count] ; i++)
+            {
+                CLLocation *B = [[CLLocation alloc] initWithLatitude:[[responseLAT objectAtIndex:i] doubleValue] longitude:[[responseLNG objectAtIndex:i] doubleValue]];
+                // ApointとBの距離を算出し(distancecFromLocation)、Bpointに代入
+                Bpoint = [Bpoint arrayByAddingObject:[NSNumber numberWithFloat:[Apoint distanceFromLocation:B]]];
+                // response*** → spot*** へ配列の要素を取り出しつつ、doubleに変換して保存する
+                spotLAT = [spotLAT arrayByAddingObject:[NSNumber numberWithFloat:[[responseLAT objectAtIndex:i] doubleValue]]];
+                spotLNG = [spotLNG arrayByAddingObject:[NSNumber numberWithFloat:[[responseLNG objectAtIndex:i] doubleValue]]];
+            }
+            
+            if (!error) {
+                //// jsonDicの要素数が0の場合、エラーコードをログに出力
+                if ([jsonDic count] == 0) {
+                    NSLog(@"don't access it as the index is out of bounds");
+                    return;
+                }else{
+                    //// 取得エラーコードをNSLogに表示
+                    NSInteger errorCode = [[[jsonDic objectForKey:@"meta"] objectForKey:@"code"] integerValue];
+                    NSLog(@"errorCode = %ld", (long)errorCode);
+                    //// jsonDicのデータのうち、venuesキーで取得できるvalueをvenuesに代入し、venues_（こちらはMutableArray）にコピー
+                    // 結果取得
+                    NSArray *venues = [[jsonDic objectForKey:@"response"] objectForKey:@"venues"];
+                    venues_ = [venues mutableCopy];
+                    distance_ = [Bpoint mutableCopy];
+                    lat_ = [spotLAT mutableCopy];
+                    lng_ = [spotLNG mutableCopy];
+                }
+            }else{
+                // jsonDataからjsonDicに変換するときにエラーが発生したときに落ちる先
+                NSLog(@"Error: %@", [error localizedDescription]);
+                return;
+            }
+            //テーブルビューのdatasourceを再読み込みする
+            dispatch_async(mainQueue,^{
+                [self loadPieChart];});
         }
-        //テーブルビューのdatasourceを再読み込みする
-        [self loadPieChart];
-    }
+    });
+    
 }
 
 - (void)loadPieChart
@@ -269,7 +276,7 @@
             arrCATEGORY = [arrCATEGORY arrayByAddingObject:[temparr objectAtIndex:5]];
         }
     }
-
+    
     for (int i= 0 ; i<[arrTYPE count]; i++) {
         if ([[arrTYPE objectAtIndex:i]  isEqual: @"shops"]) {
             shop_c++;
