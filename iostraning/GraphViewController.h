@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "XYPieChart.h"
+#import "SpecifiedViewController.h"
 
 @interface GraphViewController : UIViewController<CLLocationManagerDelegate,XYPieChartDelegate, XYPieChartDataSource>{
     
@@ -26,6 +27,12 @@
 @property (strong, nonatomic) IBOutlet XYPieChart *pieChart;
 @property(nonatomic, strong) NSMutableArray *slices;
 @property(nonatomic, strong) NSMutableArray *sliceColors;
+
+@property(nonatomic, strong) NSMutableArray *conviniArr;
+@property(nonatomic, strong) NSMutableArray *gasArr;
+@property(nonatomic, strong) NSMutableArray *shopArr;
+@property(nonatomic, strong) NSMutableArray *foodArr;
+@property(nonatomic, strong) NSMutableArray *otherArr;
 
 @property (strong, nonatomic) IBOutlet UIImageView *conviniImage;
 @property (strong, nonatomic) IBOutlet UIImageView *shopImage;

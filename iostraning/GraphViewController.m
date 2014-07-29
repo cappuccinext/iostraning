@@ -15,7 +15,6 @@
 @end
 
 @implementation GraphViewController
-
 @synthesize pieChart = _pieChart;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -85,6 +84,49 @@
     
     NSLog(@"%@",[self.sliceColors description]);
     
+}
+
+//touchによる遷移
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    switch (touch.view.tag) {
+        case 1:
+            // タグが1のビュー
+            NSLog(@"ImageView1に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_conviniArr];
+            break;
+        case 2:
+            // タグが2のビュー
+            NSLog(@"ImageView2に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_shopArr];
+            break;
+        case 3:
+            // タグが3のビュー
+            NSLog(@"ImageView3に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_gasArr];
+            break;
+        case 4:
+            // タグが4のビュー
+            NSLog(@"ImageView4に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_foodArr];
+            break;
+        case 5:
+            // タグが5のビュー
+            NSLog(@"ImageView5に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_otherArr];
+            break;
+        default:
+            // それ以外
+            NSLog(@"Viewに触った");
+            break;
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    SpecifiedViewController *c = segue.destinationViewController;
+    c.detailArr = (NSMutableArray *)sender;
 }
 
 - (void)viewDidUnload
@@ -210,6 +252,76 @@
     
 }
 
+- (void)redrawChart:(float)convini_d convini_c:(int)convini_c shop_d:(float)shop_d shop_c:(int)shop_c gas_d:(float)gas_d gas_c:(int)gas_c food_d:(float)food_d food_c:(int)food_c other_c:(int)other_c other_d:(float)other_d
+{
+    //// アイコン拡大縮小処理
+    if (convini_c == 0) {
+        self.conviniImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    }else{
+        if (convini_d < 300) {
+            self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:1];
+            [self.conviniImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:0 withObject:[UIColor colorWithRed:1 green:0.27 blue:0 alpha:1]];
+        }else{
+            self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.5];
+            [self.conviniImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:0 withObject:[UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.5]];
+        }
+    }
+    
+    if (shop_c == 0) {
+        self.shopImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    }else{
+        if (shop_d < 300) {
+            self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:1];
+            [self.shopImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:1 withObject:[UIColor colorWithRed:0.486 green:1 blue:0 alpha:1]];
+        }else{
+            self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.5];
+            [self.shopImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:1 withObject:[UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.5]];
+        }}
+    
+    if (gas_c == 0) {
+        self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    }else{
+        if (gas_d < 300) {
+            self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:1];
+            [self.gsImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:2 withObject:[UIColor colorWithRed:0 green:0.48 blue:1 alpha:1]];
+        }else{
+            self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.5];
+            [self.gsImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:2 withObject:[UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.5]];
+        }}
+    
+    if (food_c == 0) {
+        self.gourmetImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    }else{
+        if (food_d < 300) {
+            self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1];
+            [self.gourmetImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:3 withObject:[UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1]];
+        }else{
+            self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.5];
+            [self.gourmetImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:3 withObject:[UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.5]];
+        }}
+    
+    if (other_c == 0) {
+        self.buildingImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    }
+    if (other_d < 300) {
+        self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1];
+        [self.buildingImage.layer setCornerRadius:10];
+        //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1]];
+    }else{
+        self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.5];
+        [self.buildingImage.layer setCornerRadius:10];
+        //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.5]];
+    }
+}
+
 - (void)loadPieChart
 {
 #pragma mark - PROCESSING JSON DATA
@@ -307,28 +419,28 @@
     
     int convini_c = 0;
     float convini_d = 0.0;
-    NSMutableArray *conviniArr = [initArr mutableCopy];
+    self.conviniArr = [initArr mutableCopy];
     
     int gas_c = 0;
     float gas_d = 0.0;
-    NSMutableArray *gasArr = [initArr mutableCopy];
+    self.gasArr = [initArr mutableCopy];
     
     int shop_c = 0;
     float shop_d = 0.0;
-    NSMutableArray *shopArr = [initArr mutableCopy];
+    self.shopArr = [initArr mutableCopy];
     
     int food_c = 0;
     float food_d = 0.0;
-    NSMutableArray *foodArr = [initArr mutableCopy];
+    self.foodArr = [initArr mutableCopy];
     
     int other_c = 0;
     float other_d = 0.0;
-    NSMutableArray *otherArr = [initArr mutableCopy];
+    self.otherArr = [initArr mutableCopy];
     
     for (int i= 0 ; i<[dataArray count]; i++) {
         if ([[[dataArray objectAtIndex:i] objectForKey:@"CATEGORY" ] isEqual: @"conveniencestore_"]) {
             convini_c++;
-            [conviniArr addObject:[dataArray objectAtIndex:i]];
+            [_conviniArr addObject:[dataArray objectAtIndex:i]];
             if (convini_d == 0) {
                 convini_d = [[[dataArray objectAtIndex:i] objectForKey:@"DISTANCE"] floatValue];
             }else{
@@ -338,12 +450,12 @@
             }
         }
     }
-    //NSLog(@"%@",conviniArr);
+    NSLog(@"%@",_conviniArr);
     
     for (int i= 0 ; i<[dataArray count]; i++) {
         if ([[[dataArray objectAtIndex:i] objectForKey:@"CATEGORY" ] isEqual: @"gas_"]) {
             gas_c++;
-            [gasArr addObject:[dataArray objectAtIndex:i]];
+            [_gasArr addObject:[dataArray objectAtIndex:i]];
             if (gas_d == 0) {
                 gas_d = [[[dataArray objectAtIndex:i] objectForKey:@"DISTANCE"] floatValue];
             }else{
@@ -353,7 +465,7 @@
             }
         }
     }
-    //NSLog(@"%@",gasArr);
+    NSLog(@"%@",_gasArr);
     
     for (int i= 0 ; i<[dataArray count]; i++) {
         if ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"shops"]) {
@@ -363,7 +475,7 @@
             }else if([[[dataArray objectAtIndex:i] objectForKey:@"CATEGORY" ] isEqual: @"conveniencestore_"]){
                 ;
             }else{
-                [shopArr addObject:[dataArray objectAtIndex:i]];
+                [_shopArr addObject:[dataArray objectAtIndex:i]];
                 if (shop_d == 0) {
                     shop_d = [[[dataArray objectAtIndex:i] objectForKey:@"DISTANCE"] floatValue];
                 }else{
@@ -374,12 +486,12 @@
             }
         }
     }
-    //NSLog(@"%@",shopArr);
+    NSLog(@"%@",_shopArr);
     
     for (int i= 0 ; i<[dataArray count]; i++) {
         if ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"food"]) {
             food_c++;
-            [foodArr addObject:[dataArray objectAtIndex:i]];
+            [_foodArr addObject:[dataArray objectAtIndex:i]];
             if (food_d == 0) {
                 food_d = [[[dataArray objectAtIndex:i] objectForKey:@"DISTANCE"] floatValue];
             }else{
@@ -389,11 +501,11 @@
             }
         }
     }
-    //NSLog(@"%@",foodArr);
+    NSLog(@"%@",_foodArr);
     
     for (int i= 0 ; i<[dataArray count]; i++) {
         if (([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"building"])|| ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"travel"])|| ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"parks_outdoors"])|| ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"NODATA"])) {
-            [otherArr addObject:[dataArray objectAtIndex:i]];
+            [_otherArr addObject:[dataArray objectAtIndex:i]];
             if (other_d == 0) {
                 other_d = [[[dataArray objectAtIndex:i] objectForKey:@"DISTANCE"] floatValue];
             }else{
@@ -403,7 +515,7 @@
             }
         }
     }
-    //NSLog(@"%@",otherArr);
+    NSLog(@"%@",_otherArr);
     
     other_c =(int)[dataArray count]-shop_c-food_c;
     
@@ -420,72 +532,7 @@
     
     [_slices replaceObjectAtIndex:4 withObject:[NSNumber numberWithInt:[dataArray count]-shop_c-food_c]];
     
-    //// アイコン拡大縮小処理
-    if (convini_c == 0) {
-        self.conviniImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    }else{
-    if (convini_d < 300) {
-        self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:1];
-        [self.conviniImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:0 withObject:[UIColor colorWithRed:1 green:0.27 blue:0 alpha:1]];
-    }else{
-        self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.5];
-        [self.conviniImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:0 withObject:[UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.5]];
-    }
-    }
-    
-    if (shop_c == 0) {
-        self.shopImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    }else{
-    if (shop_d < 300) {
-        self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:1];
-        [self.shopImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:1 withObject:[UIColor colorWithRed:0.486 green:1 blue:0 alpha:1]];
-    }else{
-        self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.5];
-        [self.shopImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:1 withObject:[UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.5]];
-    }}
-    
-    if (gas_c == 0) {
-        self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    }else{
-    if (gas_d < 300) {
-        self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:1];
-        [self.gsImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:2 withObject:[UIColor colorWithRed:0 green:0.48 blue:1 alpha:1]];
-    }else{
-        self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.5];
-        [self.gsImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:2 withObject:[UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.5]];
-    }}
-    
-    if (food_c == 0) {
-        self.gourmetImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    }else{
-    if (food_d < 300) {
-        self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1];
-        [self.gourmetImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:3 withObject:[UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1]];
-    }else{
-        self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.5];
-        [self.gourmetImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:3 withObject:[UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.5]];
-    }}
-    
-    if (other_c == 0) {
-        self.buildingImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    }
-    if (other_d < 300) {
-        self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1];
-        [self.buildingImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1]];
-    }else{
-        self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.5];
-        [self.buildingImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.5]];
-    }
+    [self redrawChart:convini_d convini_c:convini_c shop_d:shop_d shop_c:shop_c gas_d:gas_d gas_c:gas_c food_d:food_d food_c:food_c other_c:other_c other_d:other_d];
     
     [self.pieChart reloadData];
     
@@ -512,6 +559,37 @@
 - (void)pieChart:(XYPieChart *)pieChart willSelectSliceAtIndex:(NSUInteger)index
 {
     NSLog(@"will select slice at index %lu",(unsigned long)index);
+    switch (index) {
+        case 0:
+            // タグが1のビュー
+            NSLog(@"ImageView1に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_conviniArr];
+            break;
+        case 1:
+            // タグが2のビュー
+            NSLog(@"ImageView2に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_shopArr];
+            break;
+        case 2:
+            // タグが3のビュー
+            NSLog(@"ImageView3に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_gasArr];
+            break;
+        case 3:
+            // タグが4のビュー
+            NSLog(@"ImageView4に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_foodArr];
+            break;
+        case 4:
+            // タグが5のビュー
+            NSLog(@"ImageView5に触った");
+            [self performSegueWithIdentifier:@"ToDetail" sender:_otherArr];
+            break;
+        default:
+            // それ以外
+            NSLog(@"Viewに触った");
+            break;
+    }
 }
 - (void)pieChart:(XYPieChart *)pieChart willDeselectSliceAtIndex:(NSUInteger)index
 {
@@ -532,16 +610,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

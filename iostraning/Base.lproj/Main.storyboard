@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
@@ -113,19 +114,19 @@
                                 <rect key="frame" x="30" y="66" width="260" height="247"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="conveni.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ik0-AQ-UEa">
+                            <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="conveni.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ik0-AQ-UEa">
                                 <rect key="frame" x="20" y="321" width="72" height="72"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shop.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-pY-T6O">
+                            <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shop.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cdg-pY-T6O">
                                 <rect key="frame" x="59" y="396" width="72" height="72"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="building.png" translatesAutoresizingMaskIntoConstraints="NO" id="SUs-qM-c8e">
+                            <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="building.png" translatesAutoresizingMaskIntoConstraints="NO" id="SUs-qM-c8e">
                                 <rect key="frame" x="228" y="321" width="72" height="72"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gs.png" translatesAutoresizingMaskIntoConstraints="NO" id="ah1-qo-xRy">
+                            <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gs.png" translatesAutoresizingMaskIntoConstraints="NO" id="ah1-qo-xRy">
                                 <rect key="frame" x="124" y="321" width="72" height="72"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gourmet.png" translatesAutoresizingMaskIntoConstraints="NO" id="kXx-ey-Kla">
+                            <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gourmet.png" translatesAutoresizingMaskIntoConstraints="NO" id="kXx-ey-Kla">
                                 <rect key="frame" x="177" y="396" width="72" height="72"/>
                             </imageView>
                         </subviews>
@@ -144,6 +145,7 @@
                         <outlet property="gsImage" destination="ah1-qo-xRy" id="Y1V-rj-vty"/>
                         <outlet property="pieChart" destination="8L0-Lc-z6e" id="xjG-eo-RI2"/>
                         <outlet property="shopImage" destination="Cdg-pY-T6O" id="0UX-8G-IhL"/>
+                        <segue destination="mEP-In-VDg" kind="push" identifier="ToDetail" id="wG5-aj-6Hp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBC-WH-EQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2F2-Ta-Xsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2235" y="960"/>
+            <point key="canvasLocation" x="2013" y="960"/>
         </scene>
         <!--Specified View Controller-->
         <scene sceneID="I9p-wl-49v">
@@ -203,6 +205,7 @@
                             <outlet property="delegate" destination="mEP-In-VDg" id="2hg-QK-dNB"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="2HY-ld-Qij"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
                         <size key="portraitSize" width="320" height="568"/>
@@ -211,7 +214,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="goZ-UJ-R44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2235" y="1595"/>
+            <point key="canvasLocation" x="2013" y="1595"/>
         </scene>
         <!--スポット-->
         <scene sceneID="Tfg-jf-ufw">
@@ -254,7 +257,7 @@
     </scenes>
     <resources>
         <image name="building.png" width="512" height="512"/>
-        <image name="conveni.png" width="512" height="512"/>
+        <image name="conveni.png" width="1318" height="1318"/>
         <image name="gourmet.png" width="512" height="512"/>
         <image name="gs.png" width="314" height="314"/>
         <image name="shop.png" width="512" height="512"/>

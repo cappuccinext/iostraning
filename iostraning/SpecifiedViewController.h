@@ -10,4 +10,6 @@
 
 @interface SpecifiedViewController : UITableViewController
 
+@property NSMutableArray *detailArr;
+
 @end

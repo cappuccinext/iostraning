@@ -135,7 +135,6 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     [self performSegueWithIdentifier:@"ToMap"
                               sender:[sendArr objectAtIndex:indexPath.row]];
 }
