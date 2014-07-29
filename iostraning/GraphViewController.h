@@ -25,7 +25,7 @@
 
 @property (strong, nonatomic) IBOutlet XYPieChart *pieChart;
 @property(nonatomic, strong) NSMutableArray *slices;
-@property(nonatomic, strong) NSArray        *sliceColors;
+@property(nonatomic, strong) NSMutableArray *sliceColors;
 
 @property (strong, nonatomic) IBOutlet UIImageView *conviniImage;
 @property (strong, nonatomic) IBOutlet UIImageView *shopImage;
