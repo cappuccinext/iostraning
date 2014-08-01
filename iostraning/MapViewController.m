@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"mapDic = %@",[self.mapDic description]);
+    //NSLog(@"mapDic = %@",[self.mapDic description]);
     
     self.spotmap.delegate = self;
     
@@ -74,7 +74,6 @@
 // マップデータの読み込み完了後に呼ばれる
 -(void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
     NSLog(@"%s",__func__);
-    NSLog(@"%lu",(unsigned long)[spotmap.annotations count]);
     for (id<MKAnnotation> currentAnnotation in spotmap.annotations) {
         if ([currentAnnotation isEqual:spotmap.userLocation]) {
             ;

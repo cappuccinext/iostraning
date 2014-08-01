@@ -11,6 +11,11 @@
 
 @interface GraphViewController ()
 @property (nonatomic, strong) CAGradientLayer *gradientLayer;
+@property (nonatomic, assign) int conveni;
+@property (nonatomic, assign) int shop;
+@property (nonatomic, assign) int gs;
+@property (nonatomic, assign) int food;
+@property (nonatomic, assign) int other;
 
 @end
 
@@ -82,7 +87,7 @@
                        [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1],
                        nil];
     
-    NSLog(@"%@",[self.sliceColors description]);
+    //NSLog(@"%@",[self.sliceColors description]);
     
 }
 
@@ -159,8 +164,8 @@
 #pragma mark - ACQIRING DATE
     
     //// 取得日を作成(JSONデータ取得のための日付文字列生成 書式：yyyymmdd)
-    // 5日前の日付を生成
-    NSDate *now = [[NSDate date] dateByAddingTimeInterval:-5*24*60*60];
+    // 15日前の日付を生成
+    NSDate *now = [[NSDate date] dateByAddingTimeInterval:-15*24*60*60];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSUInteger flags;
@@ -168,7 +173,7 @@
     
     flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour ;
     comps = [calendar components:flags fromDate:now];
-    // 5日前の日付の年・月・日をそれぞれNSIntegerに格納
+    // 15日前の日付の年・月・日をそれぞれNSIntegerに格納
     NSInteger year = comps.year;
     NSInteger month = comps.month;
     NSInteger day = comps.day;
@@ -181,7 +186,7 @@
     // 一度に取得する施設数を設定
     limit = 25;
     // URL文字列を作成
-    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=%04ld%02ld%02ld", latitude, longitude,limit,(long)year,(long)month,(long)day];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=%04ld%02ld%02ld&locale=ja", latitude, longitude,limit,(long)year,(long)month,(long)day];
     // jsonデータを取得
     
     dispatch_async(subQueue, ^{NSURL *url = [NSURL URLWithString:urlString];
@@ -216,7 +221,7 @@
             {
                 CLLocation *B = [[CLLocation alloc] initWithLatitude:[[responseLAT objectAtIndex:i] doubleValue] longitude:[[responseLNG objectAtIndex:i] doubleValue]];
                 // ApointとBの距離を算出し(distancecFromLocation)、Bpointに代入
-                Bpoint = [Bpoint arrayByAddingObject:[NSNumber numberWithFloat:[Apoint distanceFromLocation:B]]];
+                Bpoint = [Bpoint arrayByAddingObject:[NSNumber numberWithInt:[Apoint distanceFromLocation:B]]];
                 // response*** → spot*** へ配列の要素を取り出しつつ、doubleに変換して保存する
                 spotLAT = [spotLAT arrayByAddingObject:[NSNumber numberWithFloat:[[responseLAT objectAtIndex:i] doubleValue]]];
                 spotLNG = [spotLNG arrayByAddingObject:[NSNumber numberWithFloat:[[responseLNG objectAtIndex:i] doubleValue]]];
@@ -257,68 +262,108 @@
     //// アイコン拡大縮小処理
     if (convini_c == 0) {
         self.conviniImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        self.conviniImage.hidden = YES;
+        self.conviniImageG.hidden = NO;
     }else{
+        //同じ座標に薄い色のuiimageviewを置き、押せないようにする。
+        self.conviniImage.hidden = NO;
+        self.conviniImageG.hidden = YES;
         if (convini_d < 300) {
             self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:1];
             [self.conviniImage.layer setCornerRadius:10];
             //[self.sliceColors replaceObjectAtIndex:0 withObject:[UIColor colorWithRed:1 green:0.27 blue:0 alpha:1]];
-        }else{
-            self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.5];
+        }else if (convini_d < 1000){
+            self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.4];
             [self.conviniImage.layer setCornerRadius:10];
             //[self.sliceColors replaceObjectAtIndex:0 withObject:[UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.5]];
+        }else{
+            self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.2];
+            [self.conviniImage.layer setCornerRadius:10];
         }
     }
     
     if (shop_c == 0) {
         self.shopImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        self.shopImage.hidden = YES;
+        self.shopImageG.hidden = NO;
     }else{
+        self.shopImage.hidden = NO;
+        self.shopImageG.hidden = YES;
         if (shop_d < 300) {
             self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:1];
             [self.shopImage.layer setCornerRadius:10];
             //[self.sliceColors replaceObjectAtIndex:1 withObject:[UIColor colorWithRed:0.486 green:1 blue:0 alpha:1]];
-        }else{
-            self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.5];
+        }else if (shop_d < 1000){
+            self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.4];
             [self.shopImage.layer setCornerRadius:10];
             //[self.sliceColors replaceObjectAtIndex:1 withObject:[UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.5]];
-        }}
+        }else{
+            self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.2];
+            [self.shopImage.layer setCornerRadius:10];
+        }
+    }
     
     if (gas_c == 0) {
         self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        self.gsImage.hidden = YES;
+        self.gsImageG.hidden = NO;
     }else{
+        self.gsImage.hidden = NO;
+        self.gsImageG.hidden = YES;
         if (gas_d < 300) {
             self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:1];
             [self.gsImage.layer setCornerRadius:10];
             //[self.sliceColors replaceObjectAtIndex:2 withObject:[UIColor colorWithRed:0 green:0.48 blue:1 alpha:1]];
-        }else{
-            self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.5];
+        }else if (gas_d < 1000){
+            self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.4];
             [self.gsImage.layer setCornerRadius:10];
             //[self.sliceColors replaceObjectAtIndex:2 withObject:[UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.5]];
-        }}
+        }else{
+            self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.2];
+            [self.gsImage.layer setCornerRadius:10];
+        }
+    }
     
     if (food_c == 0) {
         self.gourmetImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+        self.gourmetImage.hidden = YES;
+        self.gourmetImageG.hidden = NO;
     }else{
+        self.gourmetImage.hidden = NO;
+        self.gourmetImageG.hidden = YES;
         if (food_d < 300) {
             self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1];
             [self.gourmetImage.layer setCornerRadius:10];
             //[self.sliceColors replaceObjectAtIndex:3 withObject:[UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1]];
-        }else{
-            self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.5];
+        }else if (food_d < 1000){
+            self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.4];
             [self.gourmetImage.layer setCornerRadius:10];
             //[self.sliceColors replaceObjectAtIndex:3 withObject:[UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.5]];
-        }}
+        }else{
+            self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.2];
+            [self.gourmetImage.layer setCornerRadius:10];
+        }
+    }
     
     if (other_c == 0) {
         self.buildingImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    }
-    if (other_d < 300) {
-        self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1];
-        [self.buildingImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1]];
+        self.buildingImage.hidden = YES;
+        self.buildingImageG.hidden = NO;
     }else{
-        self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.5];
-        [self.buildingImage.layer setCornerRadius:10];
-        //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.5]];
+        self.buildingImage.hidden = NO;
+        self.buildingImageG.hidden = YES;
+        if (other_d < 300) {
+            self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1];
+            [self.buildingImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1]];
+        }else if (other_d < 1000){
+            self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.4];
+            [self.buildingImage.layer setCornerRadius:10];
+            //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.5]];
+        }else{
+            self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.2];
+            [self.buildingImage.layer setCornerRadius:10];
+        }
     }
 }
 
@@ -450,7 +495,7 @@
             }
         }
     }
-    NSLog(@"%@",_conviniArr);
+    //NSLog(@"%@",_conviniArr);
     
     for (int i= 0 ; i<[dataArray count]; i++) {
         if ([[[dataArray objectAtIndex:i] objectForKey:@"CATEGORY" ] isEqual: @"gas_"]) {
@@ -465,7 +510,7 @@
             }
         }
     }
-    NSLog(@"%@",_gasArr);
+    //NSLog(@"%@",_gasArr);
     
     for (int i= 0 ; i<[dataArray count]; i++) {
         if ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"shops"]) {
@@ -486,7 +531,7 @@
             }
         }
     }
-    NSLog(@"%@",_shopArr);
+    //NSLog(@"%@",_shopArr);
     
     for (int i= 0 ; i<[dataArray count]; i++) {
         if ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"food"]) {
@@ -501,10 +546,14 @@
             }
         }
     }
-    NSLog(@"%@",_foodArr);
+    //NSLog(@"%@",_foodArr);
     
     for (int i= 0 ; i<[dataArray count]; i++) {
-        if (([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"building"])|| ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"travel"])|| ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"parks_outdoors"])|| ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"NODATA"])) {
+        if ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"shops"]) {
+            ;
+        }   else if ([[[dataArray objectAtIndex:i] objectForKey:@"TYPE" ] isEqual: @"food"]){
+            ;
+        }else{
             [_otherArr addObject:[dataArray objectAtIndex:i]];
             if (other_d == 0) {
                 other_d = [[[dataArray objectAtIndex:i] objectForKey:@"DISTANCE"] floatValue];
@@ -515,11 +564,11 @@
             }
         }
     }
-    NSLog(@"%@",_otherArr);
+    //NSLog(@"%@",_otherArr);
     
     other_c =(int)[dataArray count]-shop_c-food_c;
     
-    NSLog(@"gas = %d, convini = %d, shop = %d, food = %d, other = %d",gas_c,convini_c,shop_c-gas_c-convini_c,food_c,other_c);
+    //NSLog(@"gas = %d, convini = %d, shop = %d, food = %d, other = %d",gas_c,convini_c,shop_c-gas_c-convini_c,food_c,other_c);
     
 #pragma mark - DRAW PIE CHART
     [_slices replaceObjectAtIndex:0 withObject:[NSNumber numberWithInt:convini_c]];
@@ -532,7 +581,21 @@
     
     [_slices replaceObjectAtIndex:4 withObject:[NSNumber numberWithInt:[dataArray count]-shop_c-food_c]];
     
+    shop_c = shop_c-convini_c-gas_c;
+    
     [self redrawChart:convini_d convini_c:convini_c shop_d:shop_d shop_c:shop_c gas_d:gas_d gas_c:gas_c food_d:food_d food_c:food_c other_c:other_c other_d:other_d];
+    
+    _shop = 0;
+    _conveni = 0;
+    _gs = 0;
+    _food = 0;
+    _other = 0;
+    
+    _shop = shop_c;
+    _conveni = convini_c;
+    _gs = gas_c;
+    _food = food_c;
+    _other = other_c;
     
     [self.pieChart reloadData];
     
@@ -563,27 +626,44 @@
         case 0:
             // タグが1のビュー
             NSLog(@"ImageView1に触った");
-            [self performSegueWithIdentifier:@"ToDetail" sender:_conviniArr];
+            if (_conveni == 0) {
+                ;
+            }else{
+                [self performSegueWithIdentifier:@"ToDetail" sender:_conviniArr];
+            }
             break;
         case 1:
             // タグが2のビュー
             NSLog(@"ImageView2に触った");
-            [self performSegueWithIdentifier:@"ToDetail" sender:_shopArr];
+            if (_shop == 0) {
+                ;
+            }else{
+                [self performSegueWithIdentifier:@"ToDetail" sender:_shopArr];}
             break;
         case 2:
             // タグが3のビュー
             NSLog(@"ImageView3に触った");
+            if(_gs == 0){
+                ;
+            }else{
             [self performSegueWithIdentifier:@"ToDetail" sender:_gasArr];
+            }
             break;
         case 3:
             // タグが4のビュー
             NSLog(@"ImageView4に触った");
-            [self performSegueWithIdentifier:@"ToDetail" sender:_foodArr];
+            if (_food == 0) {
+                ;
+            }else{
+                [self performSegueWithIdentifier:@"ToDetail" sender:_foodArr];}
             break;
         case 4:
             // タグが5のビュー
             NSLog(@"ImageView5に触った");
-            [self performSegueWithIdentifier:@"ToDetail" sender:_otherArr];
+            if (_other == 0) {
+                ;
+            }else{
+                [self performSegueWithIdentifier:@"ToDetail" sender:_otherArr];}
             break;
         default:
             // それ以外

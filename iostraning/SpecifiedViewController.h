@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MapViewController.h"
 
-@interface SpecifiedViewController : UITableViewController
+@interface SpecifiedViewController : UITableViewController{
+    NSArray *sendArr;
+}
 
 @property NSMutableArray *detailArr;
 

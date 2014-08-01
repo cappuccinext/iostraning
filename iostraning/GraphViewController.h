@@ -39,5 +39,10 @@
 @property (strong, nonatomic) IBOutlet UIImageView *gsImage;
 @property (strong, nonatomic) IBOutlet UIImageView *gourmetImage;
 @property (strong, nonatomic) IBOutlet UIImageView *buildingImage;
+@property (strong, nonatomic) IBOutlet UIImageView *conviniImageG;
+@property (strong, nonatomic) IBOutlet UIImageView *gsImageG;
+@property (strong, nonatomic) IBOutlet UIImageView *buildingImageG;
+@property (strong, nonatomic) IBOutlet UIImageView *shopImageG;
+@property (strong, nonatomic) IBOutlet UIImageView *gourmetImageG;
 
 @end

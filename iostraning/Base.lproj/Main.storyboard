@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="-301" y="1262"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Viewer-->
         <scene sceneID="Ive-FW-hxU">
             <objects>
-                <tabBarController id="Rpt-jg-vVy" sceneMemberID="viewController">
+                <tabBarController id="Rpt-jg-vVy" customClass="TabViewer" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
@@ -111,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8L0-Lc-z6e" customClass="XYPieChart">
-                                <rect key="frame" x="30" y="66" width="260" height="247"/>
+                                <rect key="frame" x="30" y="56" width="260" height="247"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="conveni.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ik0-AQ-UEa">
@@ -129,6 +129,21 @@
                             <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gourmet.png" translatesAutoresizingMaskIntoConstraints="NO" id="kXx-ey-Kla">
                                 <rect key="frame" x="177" y="396" width="72" height="72"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="conveni_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="eQF-eD-33p">
+                                <rect key="frame" x="20" y="321" width="72" height="72"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gs_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Pi-et-wnn">
+                                <rect key="frame" x="124" y="321" width="72" height="72"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="building_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="W3Y-Yl-em3">
+                                <rect key="frame" x="228" y="321" width="72" height="72"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shop_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="JmH-uY-Ygx">
+                                <rect key="frame" x="59" y="396" width="72" height="72"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gourmet_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="v8W-6d-e9y">
+                                <rect key="frame" x="177" y="396" width="72" height="72"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -140,11 +155,16 @@
                     </simulatedScreenMetrics>
                     <connections>
                         <outlet property="buildingImage" destination="SUs-qM-c8e" id="bhN-gF-kMa"/>
+                        <outlet property="buildingImageG" destination="W3Y-Yl-em3" id="cs3-my-g2a"/>
                         <outlet property="conviniImage" destination="Ik0-AQ-UEa" id="cET-Sh-N8f"/>
+                        <outlet property="conviniImageG" destination="eQF-eD-33p" id="xpM-5f-Si7"/>
                         <outlet property="gourmetImage" destination="kXx-ey-Kla" id="G8a-tL-2Uy"/>
+                        <outlet property="gourmetImageG" destination="v8W-6d-e9y" id="QJc-aV-cE2"/>
                         <outlet property="gsImage" destination="ah1-qo-xRy" id="Y1V-rj-vty"/>
+                        <outlet property="gsImageG" destination="5Pi-et-wnn" id="u50-5F-tF7"/>
                         <outlet property="pieChart" destination="8L0-Lc-z6e" id="xjG-eo-RI2"/>
                         <outlet property="shopImage" destination="Cdg-pY-T6O" id="0UX-8G-IhL"/>
+                        <outlet property="shopImageG" destination="JmH-uY-Ygx" id="ipp-bW-Xnl"/>
                         <segue destination="mEP-In-VDg" kind="push" identifier="ToDetail" id="wG5-aj-6Hp"/>
                     </connections>
                 </viewController>
@@ -193,11 +213,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="RCz-X0-jGq">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="RCz-X0-jGq">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RCz-X0-jGq" id="s4l-Mq-kp0">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kwi-F0-JLu" kind="push" identifier="ToDetailedMap" id="9X7-DI-F3j"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -219,7 +242,7 @@
         <!--スポット-->
         <scene sceneID="Tfg-jf-ufw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EuB-Q6-hJC" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EuB-Q6-hJC" customClass="ListNavigationView" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="スポット" id="IAw-Ln-8va"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ezn-5E-n8f">
@@ -238,7 +261,7 @@
         <!--ジャンル-->
         <scene sceneID="86d-jQ-W7z">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NSz-XI-XRx" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NSz-XI-XRx" customClass="ListNavigationView" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ジャンル" id="9oW-fK-Rs1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rmQ-87-S8c">
@@ -256,10 +279,18 @@
         </scene>
     </scenes>
     <resources>
-        <image name="building.png" width="512" height="512"/>
-        <image name="conveni.png" width="1318" height="1318"/>
-        <image name="gourmet.png" width="512" height="512"/>
-        <image name="gs.png" width="314" height="314"/>
-        <image name="shop.png" width="512" height="512"/>
+        <image name="building.png" width="288" height="288"/>
+        <image name="building_gray.png" width="288" height="288"/>
+        <image name="conveni.png" width="288" height="288"/>
+        <image name="conveni_gray.png" width="288" height="288"/>
+        <image name="gourmet.png" width="288" height="288"/>
+        <image name="gourmet_gray.png" width="288" height="288"/>
+        <image name="gs.png" width="288" height="288"/>
+        <image name="gs_gray.png" width="288" height="288"/>
+        <image name="shop.png" width="288" height="288"/>
+        <image name="shop_gray.png" width="288" height="288"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9X7-DI-F3j"/>
+    </inferredMetricsTieBreakers>
 </document>

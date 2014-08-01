@@ -15,6 +15,11 @@
 		644438461978B51200FC3FA4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644438451978B51200FC3FA4 /* UIKit.framework */; };
 		644438481978B55000FC3FA4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 644438471978B55000FC3FA4 /* CoreGraphics.framework */; };
 		6448DE3F19877E7A00C1DB3A /* conveni.png in Resources */ = {isa = PBXBuildFile; fileRef = 6448DE3E19877E7A00C1DB3A /* conveni.png */; };
+		645596FD198B6D2700653680 /* building_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 645596F8198B6D2700653680 /* building_gray.png */; };
+		645596FE198B6D2700653680 /* conveni_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 645596F9198B6D2700653680 /* conveni_gray.png */; };
+		645596FF198B6D2700653680 /* gourmet_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 645596FA198B6D2700653680 /* gourmet_gray.png */; };
+		64559700198B6D2700653680 /* gs_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 645596FB198B6D2700653680 /* gs_gray.png */; };
+		64559701198B6D2700653680 /* shop_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 645596FC198B6D2700653680 /* shop_gray.png */; };
 		6463E9C5197A48BE00F09CB4 /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6463E9C4197A48BE00F09CB4 /* XYPieChart.m */; };
 		6463E9C7197A4C4E00F09CB4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6463E9C6197A4C4E00F09CB4 /* QuartzCore.framework */; };
 		648FA5DE1971EB090065085C /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 648FA5DC1971EB090065085C /* GraphViewController.m */; };
@@ -33,6 +38,8 @@
 		64BB68A8197F85BB00511048 /* building.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB68A7197F85BB00511048 /* building.png */; };
 		64E67C67197E50AA00F5B004 /* SpecifiedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */; };
 		64E81288197A443700FD6C70 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E81287197A443700FD6C70 /* iAd.framework */; };
+		64FE8625198B7B4A00DFE0AD /* TabViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE8624198B7B4A00DFE0AD /* TabViewer.m */; };
+		64FE8628198B7E0300DFE0AD /* ListNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE8627198B7E0300DFE0AD /* ListNavigationView.m */; };
 		A83ADBED094B4800A527772A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FC2D324B0A4B4F9B42118D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +66,11 @@
 		644438451978B51200FC3FA4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		644438471978B55000FC3FA4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6448DE3E19877E7A00C1DB3A /* conveni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = conveni.png; sourceTree = "<group>"; };
+		645596F8198B6D2700653680 /* building_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building_gray.png; sourceTree = "<group>"; };
+		645596F9198B6D2700653680 /* conveni_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = conveni_gray.png; sourceTree = "<group>"; };
+		645596FA198B6D2700653680 /* gourmet_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gourmet_gray.png; sourceTree = "<group>"; };
+		645596FB198B6D2700653680 /* gs_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gs_gray.png; sourceTree = "<group>"; };
+		645596FC198B6D2700653680 /* shop_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop_gray.png; sourceTree = "<group>"; };
 		6463E9C3197A48BE00F09CB4 /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
 		6463E9C4197A48BE00F09CB4 /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
 		6463E9C6197A4C4E00F09CB4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -87,6 +99,10 @@
 		64E67C65197E50AA00F5B004 /* SpecifiedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecifiedViewController.h; sourceTree = "<group>"; };
 		64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecifiedViewController.m; sourceTree = "<group>"; };
 		64E81287197A443700FD6C70 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		64FE8623198B7B4A00DFE0AD /* TabViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewer.h; sourceTree = "<group>"; };
+		64FE8624198B7B4A00DFE0AD /* TabViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewer.m; sourceTree = "<group>"; };
+		64FE8626198B7E0300DFE0AD /* ListNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNavigationView.h; sourceTree = "<group>"; };
+		64FE8627198B7E0300DFE0AD /* ListNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListNavigationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +184,10 @@
 				648FA5DC1971EB090065085C /* GraphViewController.m */,
 				648FA5DD1971EB090065085C /* GraphViewController.xib */,
 				64A97558196D95BF001CD31C /* Main.storyboard */,
+				64FE8626198B7E0300DFE0AD /* ListNavigationView.h */,
+				64FE8627198B7E0300DFE0AD /* ListNavigationView.m */,
+				64FE8623198B7B4A00DFE0AD /* TabViewer.h */,
+				64FE8624198B7B4A00DFE0AD /* TabViewer.m */,
 				64E67C65197E50AA00F5B004 /* SpecifiedViewController.h */,
 				64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */,
 				64A97552196D95BF001CD31C /* AppDelegate.h */,
@@ -216,6 +236,11 @@
 		64E67C68197E50CA00F5B004 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				645596F8198B6D2700653680 /* building_gray.png */,
+				645596F9198B6D2700653680 /* conveni_gray.png */,
+				645596FA198B6D2700653680 /* gourmet_gray.png */,
+				645596FB198B6D2700653680 /* gs_gray.png */,
+				645596FC198B6D2700653680 /* shop_gray.png */,
 				6448DE3E19877E7A00C1DB3A /* conveni.png */,
 				64BB68A7197F85BB00511048 /* building.png */,
 				64BB68A5197F841900511048 /* gs.png */,
@@ -313,12 +338,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				645596FF198B6D2700653680 /* gourmet_gray.png in Resources */,
+				645596FE198B6D2700653680 /* conveni_gray.png in Resources */,
+				64559700198B6D2700653680 /* gs_gray.png in Resources */,
 				64BB68A0197F50E600511048 /* shop.png in Resources */,
 				64A97587196D9E57001CD31C /* SpotViewController.xib in Resources */,
 				64BB68A8197F85BB00511048 /* building.png in Resources */,
 				64BB68A6197F841900511048 /* gs.png in Resources */,
 				648FA5DF1971EB090065085C /* GraphViewController.xib in Resources */,
 				64A9755A196D95BF001CD31C /* Main.storyboard in Resources */,
+				645596FD198B6D2700653680 /* building_gray.png in Resources */,
+				64559701198B6D2700653680 /* shop_gray.png in Resources */,
 				6448DE3F19877E7A00C1DB3A /* conveni.png in Resources */,
 				64BB68A2197F806F00511048 /* gourmet.png in Resources */,
 				64A9755C196D95BF001CD31C /* Images.xcassets in Resources */,
@@ -377,6 +407,8 @@
 				64A97557196D95BF001CD31C /* ViewController.m in Sources */,
 				6420418C197102DC00AD9855 /* MapViewController.m in Sources */,
 				648FA5DE1971EB090065085C /* GraphViewController.m in Sources */,
+				64FE8625198B7B4A00DFE0AD /* TabViewer.m in Sources */,
+				64FE8628198B7E0300DFE0AD /* ListNavigationView.m in Sources */,
 				64E67C67197E50AA00F5B004 /* SpecifiedViewController.m in Sources */,
 				642041901971298D00AD9855 /* MyAnnotation.m in Sources */,
 				64A97554196D95BF001CD31C /* AppDelegate.m in Sources */,

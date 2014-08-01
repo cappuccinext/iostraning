@@ -90,6 +90,37 @@
         }
     }
     
+    NSString *samplepath;
+    NSArray *arrTYPE;
+    NSArray *arrCATEGORY;
+    
+    arrTYPE = @[];
+    arrCATEGORY = @[];
+    
+    
+    //4番目の区切りの内容（施設タイプ）を抜き出しarrTYPEに格納
+    for (int i = 0; i < [arrURL count] ; i++){
+        if ([[arrURL objectAtIndex:i] isEqual:@"NODATA"]) {
+            arrTYPE = [arrTYPE arrayByAddingObject:@"NODATA"];
+        }else{
+            samplepath = [arrURL objectAtIndex:i];
+            NSArray *temparr;
+            temparr = [samplepath pathComponents];
+            arrTYPE = [arrTYPE arrayByAddingObject:[temparr objectAtIndex:4]];
+        }
+    }
+    //5番目の区切りの内容（施設詳細タイプ）を抜き出しarrCATEGORYに格納
+    for (int i = 0; i < [arrURL count] ; i++){
+        if ([[arrURL objectAtIndex:i] isEqual:@"NODATA"]) {
+            arrCATEGORY = [arrCATEGORY arrayByAddingObject:@"NODATA"];
+        }else{
+            samplepath = [arrURL objectAtIndex:i];
+            NSArray *temparr;
+            temparr = [samplepath pathComponents];
+            arrCATEGORY = [arrCATEGORY arrayByAddingObject:[temparr objectAtIndex:5]];
+        }
+    }
+    
     // セル中の文字サイズを文字列の幅に合わせる
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     
@@ -107,6 +138,10 @@
                                   ,@"ID"
                                   ,[distance_ objectAtIndex:i]
                                   ,@"DISTANCE"
+                                  ,[arrTYPE objectAtIndex:i]
+                                  ,@"TYPE"
+                                  ,[arrCATEGORY objectAtIndex:i]
+                                  ,@"CATEGORY"
                                   ,[lat_ objectAtIndex:i]
                                   ,@"LATITUDE"
                                   ,[lng_ objectAtIndex:i]
@@ -129,6 +164,8 @@
     cell.textLabel.text = [[[[[sortedArr objectAtIndex:indexPath.row]objectForKey:@"SPOT"] stringByAppendingString:@" - "] stringByAppendingString:[NSString stringWithFormat:@"%@",cellVal]] stringByAppendingString:@"m"];
     
     cell.detailTextLabel.text = [[sortedArr objectAtIndex:indexPath.row]objectForKey:@"GENRE"];
+    
+    //NSLog(@"%@",[sortedArr description]);
     
     sendArr = sortedArr;
     return cell;
@@ -160,8 +197,8 @@
 #pragma mark - ACQIRING DATE
     
     //// 取得日を作成(JSONデータ取得のための日付文字列生成 書式：yyyymmdd)
-    // 5日前の日付を生成
-    NSDate *now = [[NSDate date] dateByAddingTimeInterval:-5*24*60*60];
+    // 15日前の日付を生成
+    NSDate *now = [[NSDate date] dateByAddingTimeInterval:-15*24*60*60];
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSUInteger flags;
@@ -169,7 +206,7 @@
     
     flags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour ;
     comps = [calendar components:flags fromDate:now];
-    // 5日前の日付の年・月・日をそれぞれNSIntegerに格納
+    // 15日前の日付の年・月・日をそれぞれNSIntegerに格納
     NSInteger year = comps.year;
     NSInteger month = comps.month;
     NSInteger day = comps.day;
@@ -184,7 +221,6 @@
     // URL文字列を作成
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%f,%f&limit=%d&client_id=ICIWPLPZATTTPYV0YBSVB4AQCF2PVXUWKHS3ZT1BURV0PS02&client_secret=T5SEMJSHYURT5UGERXLZNCUGI1QZ1JJHWBYN2XLDWK3FQUFN&v=%04ld%02ld%02ld", latitude, longitude,limit,(long)year,(long)month,(long)day];
     // jsonデータを取得
-    
     dispatch_async(subQueue, ^{NSURL *url = [NSURL URLWithString:urlString];
     NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
     // 取得文字列をエンコードし、jsonDataに保存
@@ -217,7 +253,7 @@
         {
             CLLocation *B = [[CLLocation alloc] initWithLatitude:[[responseLAT objectAtIndex:i] doubleValue] longitude:[[responseLNG objectAtIndex:i] doubleValue]];
             // ApointとBの距離を算出し(distancecFromLocation)、Bpointに代入
-            Bpoint = [Bpoint arrayByAddingObject:[NSNumber numberWithFloat:[Apoint distanceFromLocation:B]]];
+            Bpoint = [Bpoint arrayByAddingObject:[NSNumber numberWithInt:[Apoint distanceFromLocation:B]]];
             // response*** → spot*** へ配列の要素を取り出しつつ、doubleに変換して保存する
             spotLAT = [spotLAT arrayByAddingObject:[NSNumber numberWithFloat:[[responseLAT objectAtIndex:i] doubleValue]]];
             spotLNG = [spotLNG arrayByAddingObject:[NSNumber numberWithFloat:[[responseLNG objectAtIndex:i] doubleValue]]];
@@ -250,5 +286,23 @@
     });
 }
 
+- (BOOL)shouldAutorotate
+{
+    return YES;
+}
+
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    //tableViewは逆さだけ回転させない
+    //逆以外のすべて
+    return UIInterfaceOrientationMaskAllButUpsideDown;
+}
+
+//初期向き
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
 
 @end

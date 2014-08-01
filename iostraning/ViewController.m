@@ -46,6 +46,18 @@
     }
 }
 
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    banner.hidden = YES;
+    BOOL _bannerIsVisible;
+    if (_bannerIsVisible){
+        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0.0, 50.0);
+        [UIView commitAnimations];
+        _bannerIsVisible = NO;
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     for (UIView *viewTmp in self.view.subviews) {
         if ([viewTmp isMemberOfClass:[ADBannerView class]]) {
@@ -53,6 +65,26 @@
         }
     }
     [super viewWillDisappear:animated];
+}
+
+- (BOOL)shouldAutorotate
+{
+    //選択したViewController(navigationならnavigation)に任せる
+    return [self.presentedViewController shouldAutorotate];
+}
+
+//回転させる向きを指定
+- (NSUInteger)supportedInterfaceOrientations
+{
+    //選択したViewController(navigationならnavigation)に任せる
+    return [self.presentedViewController supportedInterfaceOrientations];
+}
+
+//初期向き
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    //選択したViewController(navigationならnavigation)に任せる
+    return [self.presentedViewController preferredInterfaceOrientationForPresentation];
 }
 
 @end
