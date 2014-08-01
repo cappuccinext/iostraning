@@ -91,6 +91,7 @@
     
 }
 
+
 //touchによる遷移
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

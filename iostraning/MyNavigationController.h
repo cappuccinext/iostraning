@@ -1,5 +1,5 @@
 //
-//  TabViewer.h
+//  MyNavigationController.h
 //  iostraning
 //
 //  Created by cappuccinext on 2014/08/01.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TabViewer : UITabBarController
+@interface MyNavigationController : UINavigationController
 
 @end

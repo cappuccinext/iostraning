@@ -8,7 +8,13 @@
 
 #import "MapViewController.h"
 
-@interface MapViewController ()
+@interface MapViewController (){
+    float startLat;
+    float startLon;
+    float goalLat;
+    float goalLon;
+    NSString *requestURL;
+}
 
 @end
 
@@ -121,23 +127,41 @@
     float destination_lat = [self.mapDic[@"LATITUDE"] floatValue];
     float destination_lng = [self.mapDic[@"LONGITUDE"] floatValue];
     
-    NSString *requestURL = [NSString stringWithFormat:@"http://maps.apple.com/?saddr=%f,%f&daddr=%f,%f",orientation_lat,orientation_lng,destination_lat,destination_lng];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:requestURL]];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"ルート表示"
+                          message:@"どのアプリで表示しますか？"
+                          delegate:self
+                          cancelButtonTitle:@"Cancel"
+                          otherButtonTitles:@"マップ", @"Googleマップ", nil];
     
-    /*
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
-        float startLat = orientation_lat;
-        float startLon = orientation_lng;
-        float goalLat  = destination_lat;
-        float goalLon  = destination_lng;
-        
-        NSString *requestURL = [NSString stringWithFormat:@"comgooglemaps://?saddr=%f,%f&daddr=%f,%f&directionsmode=walking",startLat,startLon,goalLat,goalLon];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:requestURL]];
-    }else{
-        NSLog(@"ERROR");
-    }*/
+    startLat = orientation_lat;
+    startLon = orientation_lng;
+    goalLat  = destination_lat;
+    goalLon  = destination_lng;
+    
+    [alert show];
 }
 
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 1: // Button1が押されたとき
+            NSLog(@"Button1");
+            requestURL = [NSString stringWithFormat:@"http://maps.apple.com/?saddr=%f,%f&daddr=%f,%f",startLat,startLon,goalLat,goalLon];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:requestURL]];
+            break;
+        case 2: // Button2が押されたとき
+            //if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"comgooglemaps://"]]) {
+                requestURL = [NSString stringWithFormat:@"comgooglemaps://?saddr=%f,%f&daddr=%f,%f&directionsmode=driving",startLat,startLon,goalLat,goalLon];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:requestURL]];
+            //}else{
+            //    NSLog(@"ERROR");
+            //}
+            break;
+        default: // キャンセルが押されたとき
+            NSLog(@"Cancel");
+            break;
+    }
+}
 
 @end

@@ -1,18 +1,18 @@
 //
-//  ListNavigationView.m
+//  MyNavigationController.m
 //  iostraning
 //
 //  Created by cappuccinext on 2014/08/01.
 //  Copyright (c) 2014年 cappmac. All rights reserved.
 //
 
-#import "ListNavigationView.h"
+#import "MyNavigationController.h"
 
-@interface ListNavigationView ()
+@interface MyNavigationController ()
 
 @end
 
-@implementation ListNavigationView
+@implementation MyNavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,23 +33,20 @@
     // Pass the selected object to the new view controller.
 }
 */
-- (BOOL)shouldAutorotate
-{
-    //表示しているViewControllerにまかせる
-    return [self.visibleViewController shouldAutorotate];
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    return [self.visibleViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
-- (NSUInteger)supportedInterfaceOrientations
-{
-    //表示しているViewControllerにまかせる
-    return [self.visibleViewController supportedInterfaceOrientations];
+- (NSUInteger)supportedInterfaceOrientations {
+    
+    return self.visibleViewController.supportedInterfaceOrientations;
 }
 
-//初期向き
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    //表示しているViewControllerにまかせる
-    return [self.visibleViewController preferredInterfaceOrientationForPresentation];
+- (BOOL)shouldAutorotate {
+    
+    return YES;
 }
 
 @end

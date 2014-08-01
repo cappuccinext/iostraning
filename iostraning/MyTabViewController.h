@@ -1,5 +1,5 @@
 //
-//  ListNavigationView.h
+//  MyTabViewController.h
 //  iostraning
 //
 //  Created by cappuccinext on 2014/08/01.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListNavigationView : UINavigationController
+@interface MyTabViewController : UITabBarController
 
 @end

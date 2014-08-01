@@ -18,14 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JJN-sv-qCk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="518"/>
                                 <connections>
                                     <segue destination="Rpt-jg-vVy" kind="embed" id="yqr-E5-Y8G"/>
                                 </connections>
                             </containerView>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fBT-td-0KE">
-                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
-                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -39,10 +36,10 @@
             </objects>
             <point key="canvasLocation" x="-301" y="1262"/>
         </scene>
-        <!--Tab Viewer-->
+        <!--My Tab View Controller-->
         <scene sceneID="Ive-FW-hxU">
             <objects>
-                <tabBarController id="Rpt-jg-vVy" customClass="TabViewer" sceneMemberID="viewController">
+                <tabBarController id="Rpt-jg-vVy" customClass="MyTabViewController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
@@ -242,7 +239,7 @@
         <!--スポット-->
         <scene sceneID="Tfg-jf-ufw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EuB-Q6-hJC" customClass="ListNavigationView" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EuB-Q6-hJC" customClass="MyNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="スポット" id="IAw-Ln-8va"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ezn-5E-n8f">
@@ -261,7 +258,7 @@
         <!--ジャンル-->
         <scene sceneID="86d-jQ-W7z">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NSz-XI-XRx" customClass="ListNavigationView" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NSz-XI-XRx" customClass="MyNavigationController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="ジャンル" id="9oW-fK-Rs1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rmQ-87-S8c">

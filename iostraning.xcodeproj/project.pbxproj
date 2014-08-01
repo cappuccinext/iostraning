@@ -36,10 +36,10 @@
 		64BB68A2197F806F00511048 /* gourmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB68A1197F806F00511048 /* gourmet.png */; };
 		64BB68A6197F841900511048 /* gs.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB68A5197F841900511048 /* gs.png */; };
 		64BB68A8197F85BB00511048 /* building.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB68A7197F85BB00511048 /* building.png */; };
+		64C7CCCC198B9374007D9312 /* MyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C7CCCB198B9374007D9312 /* MyNavigationController.m */; };
+		64C7CCCF198B9482007D9312 /* MyTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C7CCCE198B9482007D9312 /* MyTabViewController.m */; };
 		64E67C67197E50AA00F5B004 /* SpecifiedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */; };
 		64E81288197A443700FD6C70 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E81287197A443700FD6C70 /* iAd.framework */; };
-		64FE8625198B7B4A00DFE0AD /* TabViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE8624198B7B4A00DFE0AD /* TabViewer.m */; };
-		64FE8628198B7E0300DFE0AD /* ListNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64FE8627198B7E0300DFE0AD /* ListNavigationView.m */; };
 		A83ADBED094B4800A527772A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FC2D324B0A4B4F9B42118D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -96,13 +96,13 @@
 		64BB68A1197F806F00511048 /* gourmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gourmet.png; sourceTree = "<group>"; };
 		64BB68A5197F841900511048 /* gs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gs.png; sourceTree = "<group>"; };
 		64BB68A7197F85BB00511048 /* building.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = building.png; sourceTree = "<group>"; };
+		64C7CCCA198B9374007D9312 /* MyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationController.h; sourceTree = "<group>"; };
+		64C7CCCB198B9374007D9312 /* MyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationController.m; sourceTree = "<group>"; };
+		64C7CCCD198B9482007D9312 /* MyTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabViewController.h; sourceTree = "<group>"; };
+		64C7CCCE198B9482007D9312 /* MyTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabViewController.m; sourceTree = "<group>"; };
 		64E67C65197E50AA00F5B004 /* SpecifiedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecifiedViewController.h; sourceTree = "<group>"; };
 		64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecifiedViewController.m; sourceTree = "<group>"; };
 		64E81287197A443700FD6C70 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		64FE8623198B7B4A00DFE0AD /* TabViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewer.h; sourceTree = "<group>"; };
-		64FE8624198B7B4A00DFE0AD /* TabViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewer.m; sourceTree = "<group>"; };
-		64FE8626198B7E0300DFE0AD /* ListNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListNavigationView.h; sourceTree = "<group>"; };
-		64FE8627198B7E0300DFE0AD /* ListNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListNavigationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,10 +184,10 @@
 				648FA5DC1971EB090065085C /* GraphViewController.m */,
 				648FA5DD1971EB090065085C /* GraphViewController.xib */,
 				64A97558196D95BF001CD31C /* Main.storyboard */,
-				64FE8626198B7E0300DFE0AD /* ListNavigationView.h */,
-				64FE8627198B7E0300DFE0AD /* ListNavigationView.m */,
-				64FE8623198B7B4A00DFE0AD /* TabViewer.h */,
-				64FE8624198B7B4A00DFE0AD /* TabViewer.m */,
+				64C7CCCD198B9482007D9312 /* MyTabViewController.h */,
+				64C7CCCE198B9482007D9312 /* MyTabViewController.m */,
+				64C7CCCA198B9374007D9312 /* MyNavigationController.h */,
+				64C7CCCB198B9374007D9312 /* MyNavigationController.m */,
 				64E67C65197E50AA00F5B004 /* SpecifiedViewController.h */,
 				64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */,
 				64A97552196D95BF001CD31C /* AppDelegate.h */,
@@ -403,16 +403,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				6463E9C5197A48BE00F09CB4 /* XYPieChart.m in Sources */,
+				64C7CCCF198B9482007D9312 /* MyTabViewController.m in Sources */,
 				64A97586196D9E57001CD31C /* SpotViewController.m in Sources */,
 				64A97557196D95BF001CD31C /* ViewController.m in Sources */,
 				6420418C197102DC00AD9855 /* MapViewController.m in Sources */,
 				648FA5DE1971EB090065085C /* GraphViewController.m in Sources */,
-				64FE8625198B7B4A00DFE0AD /* TabViewer.m in Sources */,
-				64FE8628198B7E0300DFE0AD /* ListNavigationView.m in Sources */,
 				64E67C67197E50AA00F5B004 /* SpecifiedViewController.m in Sources */,
 				642041901971298D00AD9855 /* MyAnnotation.m in Sources */,
 				64A97554196D95BF001CD31C /* AppDelegate.m in Sources */,
 				64A97551196D95BF001CD31C /* main.m in Sources */,
+				64C7CCCC198B9374007D9312 /* MyNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

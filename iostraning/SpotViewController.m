@@ -286,23 +286,4 @@
     });
 }
 
-- (BOOL)shouldAutorotate
-{
-    return YES;
-}
-
-
-- (NSUInteger)supportedInterfaceOrientations
-{
-    //tableViewは逆さだけ回転させない
-    //逆以外のすべて
-    return UIInterfaceOrientationMaskAllButUpsideDown;
-}
-
-//初期向き
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    return UIInterfaceOrientationPortrait;
-}
-
 @end

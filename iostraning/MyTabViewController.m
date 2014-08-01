@@ -1,18 +1,18 @@
 //
-//  TabViewer.m
+//  MyTabViewController.m
 //  iostraning
 //
 //  Created by cappuccinext on 2014/08/01.
 //  Copyright (c) 2014年 cappmac. All rights reserved.
 //
 
-#import "TabViewer.h"
+#import "MyTabViewController.h"
 
-@interface TabViewer ()
+@interface MyTabViewController ()
 
 @end
 
-@implementation TabViewer
+@implementation MyTabViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,25 +33,20 @@
     // Pass the selected object to the new view controller.
 }
 */
-//回転させるかどうか
-- (BOOL)shouldAutorotate
-{
-    //選択したViewController(navigationならnavigation)に任せる
-    return YES;
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    
+    return [self.selectedViewController shouldAutorotateToInterfaceOrientation:interfaceOrientation];
 }
 
-//回転させる向きを指定
-- (NSUInteger)supportedInterfaceOrientations
-{
-    //選択したViewController(navigationならnavigation)に任せる
-    return [self.selectedViewController supportedInterfaceOrientations];
+- (BOOL)shouldAutorotate {
+    
+    return self.selectedViewController.shouldAutorotate;
 }
 
-//初期向き
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    //選択したViewController(navigationならnavigation)に任せる
-    return [self.selectedViewController preferredInterfaceOrientationForPresentation];
+- (NSUInteger)supportedInterfaceOrientations {
+    
+    return self.selectedViewController.supportedInterfaceOrientations;
 }
 
 @end

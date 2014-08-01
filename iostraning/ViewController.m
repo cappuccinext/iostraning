@@ -7,9 +7,8 @@
 //
 
 #import "ViewController.h"
-#import <iAd/iAd.h>
 
-@interface ViewController ()<ADBannerViewDelegate>
+@interface ViewController ()
 
 @end
 
@@ -18,6 +17,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // iAd を生成
+    adView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+    
+    // 画面(ビュー)の下に表示する場合
+    //adView.frame = CGRectMake(0, self.view.frame.size.height - adView.frame.size.height, adView.frame.size.width, adView.frame.size.height);
+    
+    // adViewのフレーム矩形が変更された時にサブビューのサイズを自動的に変更
+    adView.autoresizesSubviews = YES;
+    
+    // 横向き、縦向きに回転した際に、自動的に広告の横幅を調整し、画面上に固定
+    // ※画面下に表示する場合は、コメントアウト。
+    adView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+    
+    // 横向き、縦向きに回転した際に、自動的に広告の横幅を調整し、画面下に固定
+    // ※画面上に表示する場合は、コメントアウト。
+    //adView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    
+    // 非表示にしておく
+    adView.alpha = 0.0f;
+    
+    // ビューに追加
+    [self.view addSubview:adView];
+    
+    // デリゲートをこの UIViewContoroller に渡す
+    adView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,66 +49,26 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    
-    BOOL _bannerIsVisible;
-    //  バナー表示の準備が完了したため、バナーが表示されていなければバナーを表示する。
-    if (!_bannerIsVisible)
-    {
-        [UIView
-         //  フェードインのアニメーションを指定
-         animateWithDuration:1.0              //  アニメーションの時間を秒単位で指定
-         delay: 0.0                       //  アニメーション開始までの時間を秒単位で指定
-         options:UIViewAnimationOptionCurveEaseIn //  アニメーションの推移速度カーブの指定
-         animations:^{                     //  アニメーションで変化させるプロパティ値を指定
-             [banner setAlpha:1.0f];
-         }
-         completion:nil];
-        
-        _bannerIsVisible = YES;
+// iAdの受信に成功したとき
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    // バナーが表示されていない場合
+    if ( !bannerIsVisible ) {
+        // 表示
+        banner.alpha = 1.0f;
     }
+    // フラグをYESに
+    bannerIsVisible = YES;
 }
 
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    banner.hidden = YES;
-    BOOL _bannerIsVisible;
-    if (_bannerIsVisible){
-        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
-        banner.frame = CGRectOffset(banner.frame, 0.0, 50.0);
-        [UIView commitAnimations];
-        _bannerIsVisible = NO;
+// iAdの受信に失敗したとき
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    // バナーが表示されている場合
+    if ( bannerIsVisible ) {
+        // 非表示
+        banner.alpha = 0.0f;
     }
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    for (UIView *viewTmp in self.view.subviews) {
-        if ([viewTmp isMemberOfClass:[ADBannerView class]]) {
-            ((ADBannerView *)viewTmp).delegate = nil;
-        }
-    }
-    [super viewWillDisappear:animated];
-}
-
-- (BOOL)shouldAutorotate
-{
-    //選択したViewController(navigationならnavigation)に任せる
-    return [self.presentedViewController shouldAutorotate];
-}
-
-//回転させる向きを指定
-- (NSUInteger)supportedInterfaceOrientations
-{
-    //選択したViewController(navigationならnavigation)に任せる
-    return [self.presentedViewController supportedInterfaceOrientations];
-}
-
-//初期向き
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-{
-    //選択したViewController(navigationならnavigation)に任せる
-    return [self.presentedViewController preferredInterfaceOrientationForPresentation];
+    // フラグをNOに
+    bannerIsVisible = NO;
 }
 
 @end

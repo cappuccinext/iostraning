@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
+#import <iAd/iAd.h>
 
-@interface ViewController : UIViewController<CLLocationManagerDelegate>{
+@interface ViewController : UIViewController<ADBannerViewDelegate>{
+    ADBannerView *adView;
+    BOOL bannerIsVisible; // 広告表示状態のフラグ
 }
 @end
 
