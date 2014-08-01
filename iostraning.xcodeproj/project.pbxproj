@@ -40,6 +40,7 @@
 		64C7CCCF198B9482007D9312 /* MyTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C7CCCE198B9482007D9312 /* MyTabViewController.m */; };
 		64E67C67197E50AA00F5B004 /* SpecifiedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */; };
 		64E81288197A443700FD6C70 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E81287197A443700FD6C70 /* iAd.framework */; };
+		64F3CED3198BC72A00AFB90A /* Main_old.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64F3CED2198BC72A00AFB90A /* Main_old.storyboard */; };
 		A83ADBED094B4800A527772A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FC2D324B0A4B4F9B42118D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		64E67C65197E50AA00F5B004 /* SpecifiedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecifiedViewController.h; sourceTree = "<group>"; };
 		64E67C66197E50AA00F5B004 /* SpecifiedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecifiedViewController.m; sourceTree = "<group>"; };
 		64E81287197A443700FD6C70 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		64F3CED2198BC72A00AFB90A /* Main_old.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_old.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 				648FA5DC1971EB090065085C /* GraphViewController.m */,
 				648FA5DD1971EB090065085C /* GraphViewController.xib */,
 				64A97558196D95BF001CD31C /* Main.storyboard */,
+				64F3CED2198BC72A00AFB90A /* Main_old.storyboard */,
 				64C7CCCD198B9482007D9312 /* MyTabViewController.h */,
 				64C7CCCE198B9482007D9312 /* MyTabViewController.m */,
 				64C7CCCA198B9374007D9312 /* MyNavigationController.h */,
@@ -346,6 +349,7 @@
 				64BB68A8197F85BB00511048 /* building.png in Resources */,
 				64BB68A6197F841900511048 /* gs.png in Resources */,
 				648FA5DF1971EB090065085C /* GraphViewController.xib in Resources */,
+				64F3CED3198BC72A00AFB90A /* Main_old.storyboard in Resources */,
 				64A9755A196D95BF001CD31C /* Main.storyboard in Resources */,
 				645596FD198B6D2700653680 /* building_gray.png in Resources */,
 				64559701198B6D2700653680 /* shop_gray.png in Resources */,
