@@ -15,11 +15,46 @@
 
 @implementation AppDelegate
             
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UIStoryboard *storyboard;   // StoryBoardの型宣言
+    NSString * storyBoardName;  // StoryBoardの名称設定用
+    
+    // 機種の取得
+    NSString *modelname = [ [ UIDevice currentDevice] model];
+    
+    // iPadかどうか判断する
+    if ( ![modelname hasPrefix:@"iPad"] ) {
+        
+        // Windowスクリーンのサイズを取得
+        CGRect r = [[UIScreen mainScreen] bounds];
+        // 縦の長さが480の場合、古いiPhoneだと判定
+        if(r.size.height == 480){
+            // NSLog(@"Old iPhone");
+            storyBoardName = @"Main_old";
+        }else{
+            // NSLog(@"New iPhone");
+            storyBoardName =@"Main";
+        }
+    }else{
+        // NSLog(@"iPad");
+        storyBoardName =@"Main_old";
+    }
+    // StoryBoardのインスタンス化
+    storyboard = [UIStoryboard storyboardWithName:storyBoardName bundle:nil];
+    
+    // 画面の生成
+    UIViewController *mainViewController = [storyboard instantiateInitialViewController];
+    
+    // ルートウィンドウにひっつける
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = mainViewController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

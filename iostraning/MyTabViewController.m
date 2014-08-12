@@ -17,6 +17,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UITabBarItem *item1 = [self.tabBar.items objectAtIndex:0];
+    item1.image = [[UIImage imageNamed:@"tab_icon1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UITabBarItem *item2 = [self.tabBar.items objectAtIndex:1];
+    item2.image = [[UIImage imageNamed:@"tab_icon2.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 - (void)didReceiveMemoryWarning {

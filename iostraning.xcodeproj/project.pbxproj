@@ -32,6 +32,10 @@
 		64A97568196D95BF001CD31C /* iostraningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97567196D95BF001CD31C /* iostraningTests.m */; };
 		64A97586196D9E57001CD31C /* SpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A97584196D9E57001CD31C /* SpotViewController.m */; };
 		64A97587196D9E57001CD31C /* SpotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64A97585196D9E57001CD31C /* SpotViewController.xib */; };
+		64B3F15F198DFF16006F0CA4 /* tab_background.png.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3F15D198DFF16006F0CA4 /* tab_background.png.png */; };
+		64B3F160198DFF16006F0CA4 /* tab_selection_indicator.png.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3F15E198DFF16006F0CA4 /* tab_selection_indicator.png.png */; };
+		64B3F163198E038A006F0CA4 /* tab_icon1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3F161198E038A006F0CA4 /* tab_icon1@2x.png */; };
+		64B3F164198E038A006F0CA4 /* tab_icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 64B3F162198E038A006F0CA4 /* tab_icon2@2x.png */; };
 		64BB68A0197F50E600511048 /* shop.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB689F197F50E600511048 /* shop.png */; };
 		64BB68A2197F806F00511048 /* gourmet.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB68A1197F806F00511048 /* gourmet.png */; };
 		64BB68A6197F841900511048 /* gs.png in Resources */ = {isa = PBXBuildFile; fileRef = 64BB68A5197F841900511048 /* gs.png */; };
@@ -46,6 +50,48 @@
 
 /* Begin PBXContainerItemProxy section */
 		64A97562196D95BF001CD31C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64A97543196D95BE001CD31C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64A9754A196D95BF001CD31C;
+			remoteInfo = iostraning;
+		};
+		64B274BF198E0C4900E63C8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64A97543196D95BE001CD31C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64A9754A196D95BF001CD31C;
+			remoteInfo = iostraning;
+		};
+		64B274C1198E0C4900E63C8F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64A97543196D95BE001CD31C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64A9754A196D95BF001CD31C;
+			remoteInfo = iostraning;
+		};
+		64B3F165198E05C4006F0CA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64A97543196D95BE001CD31C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64A9754A196D95BF001CD31C;
+			remoteInfo = iostraning;
+		};
+		64B3F167198E05C5006F0CA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64A97543196D95BE001CD31C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64A9754A196D95BF001CD31C;
+			remoteInfo = iostraning;
+		};
+		64F82FA8198E0E5B004B5F6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 64A97543196D95BE001CD31C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 64A9754A196D95BF001CD31C;
+			remoteInfo = iostraning;
+		};
+		64F82FAA198E0E5B004B5F6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 64A97543196D95BE001CD31C /* Project object */;
 			proxyType = 1;
@@ -93,6 +139,11 @@
 		64A97583196D9E57001CD31C /* SpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotViewController.h; sourceTree = "<group>"; };
 		64A97584196D9E57001CD31C /* SpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotViewController.m; sourceTree = "<group>"; };
 		64A97585196D9E57001CD31C /* SpotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotViewController.xib; sourceTree = "<group>"; };
+		64B274BE198E08C700E63C8F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		64B3F15D198DFF16006F0CA4 /* tab_background.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_background.png.png; sourceTree = "<group>"; };
+		64B3F15E198DFF16006F0CA4 /* tab_selection_indicator.png.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_selection_indicator.png.png; sourceTree = "<group>"; };
+		64B3F161198E038A006F0CA4 /* tab_icon1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_icon1@2x.png"; sourceTree = "<group>"; };
+		64B3F162198E038A006F0CA4 /* tab_icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_icon2@2x.png"; sourceTree = "<group>"; };
 		64BB689F197F50E600511048 /* shop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shop.png; sourceTree = "<group>"; };
 		64BB68A1197F806F00511048 /* gourmet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gourmet.png; sourceTree = "<group>"; };
 		64BB68A5197F841900511048 /* gs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gs.png; sourceTree = "<group>"; };
@@ -239,6 +290,10 @@
 		64E67C68197E50CA00F5B004 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				64B3F161198E038A006F0CA4 /* tab_icon1@2x.png */,
+				64B3F162198E038A006F0CA4 /* tab_icon2@2x.png */,
+				64B3F15D198DFF16006F0CA4 /* tab_background.png.png */,
+				64B3F15E198DFF16006F0CA4 /* tab_selection_indicator.png.png */,
 				645596F8198B6D2700653680 /* building_gray.png */,
 				645596F9198B6D2700653680 /* conveni_gray.png */,
 				645596FA198B6D2700653680 /* gourmet_gray.png */,
@@ -287,6 +342,12 @@
 			);
 			dependencies = (
 				64A97563196D95BF001CD31C /* PBXTargetDependency */,
+				64B3F166198E05C4006F0CA4 /* PBXTargetDependency */,
+				64B3F168198E05C5006F0CA4 /* PBXTargetDependency */,
+				64B274C0198E0C4900E63C8F /* PBXTargetDependency */,
+				64B274C2198E0C4900E63C8F /* PBXTargetDependency */,
+				64F82FA9198E0E5B004B5F6C /* PBXTargetDependency */,
+				64F82FAB198E0E5B004B5F6C /* PBXTargetDependency */,
 			);
 			name = iostraningTests;
 			productName = iostraningTests;
@@ -342,10 +403,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				645596FF198B6D2700653680 /* gourmet_gray.png in Resources */,
+				64B3F164198E038A006F0CA4 /* tab_icon2@2x.png in Resources */,
+				64B3F160198DFF16006F0CA4 /* tab_selection_indicator.png.png in Resources */,
 				645596FE198B6D2700653680 /* conveni_gray.png in Resources */,
+				64B3F15F198DFF16006F0CA4 /* tab_background.png.png in Resources */,
 				64559700198B6D2700653680 /* gs_gray.png in Resources */,
 				64BB68A0197F50E600511048 /* shop.png in Resources */,
 				64A97587196D9E57001CD31C /* SpotViewController.xib in Resources */,
+				64B3F163198E038A006F0CA4 /* tab_icon1@2x.png in Resources */,
 				64BB68A8197F85BB00511048 /* building.png in Resources */,
 				64BB68A6197F841900511048 /* gs.png in Resources */,
 				648FA5DF1971EB090065085C /* GraphViewController.xib in Resources */,
@@ -436,6 +501,36 @@
 			target = 64A9754A196D95BF001CD31C /* iostraning */;
 			targetProxy = 64A97562196D95BF001CD31C /* PBXContainerItemProxy */;
 		};
+		64B274C0198E0C4900E63C8F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64A9754A196D95BF001CD31C /* iostraning */;
+			targetProxy = 64B274BF198E0C4900E63C8F /* PBXContainerItemProxy */;
+		};
+		64B274C2198E0C4900E63C8F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64A9754A196D95BF001CD31C /* iostraning */;
+			targetProxy = 64B274C1198E0C4900E63C8F /* PBXContainerItemProxy */;
+		};
+		64B3F166198E05C4006F0CA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64A9754A196D95BF001CD31C /* iostraning */;
+			targetProxy = 64B3F165198E05C4006F0CA4 /* PBXContainerItemProxy */;
+		};
+		64B3F168198E05C5006F0CA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64A9754A196D95BF001CD31C /* iostraning */;
+			targetProxy = 64B3F167198E05C5006F0CA4 /* PBXContainerItemProxy */;
+		};
+		64F82FA9198E0E5B004B5F6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64A9754A196D95BF001CD31C /* iostraning */;
+			targetProxy = 64F82FA8198E0E5B004B5F6C /* PBXContainerItemProxy */;
+		};
+		64F82FAB198E0E5B004B5F6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 64A9754A196D95BF001CD31C /* iostraning */;
+			targetProxy = 64F82FAA198E0E5B004B5F6C /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -443,6 +538,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				64A97559196D95BF001CD31C /* Base */,
+				64B274BE198E08C700E63C8F /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -534,13 +630,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yoshiyuki Kato (GX6UTM4UNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yoshiyuki Kato (GX6UTM4UNL)";
 				INFOPLIST_FILE = iostraning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "CFA67582-90FA-4066-A247-DAAE1C9030D3";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -551,13 +647,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yoshiyuki Kato (GX6UTM4UNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yoshiyuki Kato (GX6UTM4UNL)";
 				INFOPLIST_FILE = iostraning/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "CFA67582-90FA-4066-A247-DAAE1C9030D3";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

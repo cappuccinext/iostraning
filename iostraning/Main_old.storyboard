@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="F0r-DU-A6O">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
@@ -104,51 +103,51 @@
                         <viewControllerLayoutGuide type="bottom" id="hsp-FR-chH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gPP-2r-GqG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IfU-dh-XGn" customClass="XYPieChart">
-                                <rect key="frame" x="30" y="56" width="260" height="247"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="conveni.png" translatesAutoresizingMaskIntoConstraints="NO" id="UR2-KI-aUS">
-                                <rect key="frame" x="20" y="321" width="72" height="72"/>
+                                <rect key="frame" x="20" y="234" width="72" height="72"/>
                             </imageView>
                             <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shop.png" translatesAutoresizingMaskIntoConstraints="NO" id="XGz-lZ-pOw">
-                                <rect key="frame" x="59" y="396" width="72" height="72"/>
+                                <rect key="frame" x="59" y="309" width="72" height="72"/>
                             </imageView>
                             <imageView tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="building.png" translatesAutoresizingMaskIntoConstraints="NO" id="M6I-cI-Ogm">
-                                <rect key="frame" x="228" y="321" width="72" height="72"/>
+                                <rect key="frame" x="228" y="234" width="72" height="72"/>
                             </imageView>
                             <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gs.png" translatesAutoresizingMaskIntoConstraints="NO" id="qf0-gJ-I05">
-                                <rect key="frame" x="124" y="321" width="72" height="72"/>
+                                <rect key="frame" x="124" y="234" width="72" height="72"/>
                             </imageView>
                             <imageView tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gourmet.png" translatesAutoresizingMaskIntoConstraints="NO" id="D2v-0i-Nnb">
-                                <rect key="frame" x="177" y="396" width="72" height="72"/>
+                                <rect key="frame" x="177" y="309" width="72" height="72"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="conveni_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="qLi-ab-kNf">
-                                <rect key="frame" x="20" y="321" width="72" height="72"/>
+                                <rect key="frame" x="20" y="234" width="72" height="72"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gs_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="ate-a3-nTt">
-                                <rect key="frame" x="124" y="321" width="72" height="72"/>
+                                <rect key="frame" x="124" y="234" width="72" height="72"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="building_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="mlI-Jz-Ajd">
-                                <rect key="frame" x="228" y="321" width="72" height="72"/>
+                                <rect key="frame" x="228" y="234" width="72" height="72"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shop_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="Afb-sC-ysI">
-                                <rect key="frame" x="59" y="396" width="72" height="72"/>
+                                <rect key="frame" x="59" y="309" width="72" height="72"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gourmet_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="eYG-mK-3z9">
-                                <rect key="frame" x="177" y="396" width="72" height="72"/>
+                                <rect key="frame" x="177" y="309" width="72" height="72"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IfU-dh-XGn" customClass="XYPieChart">
+                                <rect key="frame" x="60" y="42" width="200" height="188"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="oWz-tZ-S7Y"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4">
-                        <size key="portraitSize" width="320" height="568"/>
-                        <size key="landscapeSize" width="568" height="320"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics">
+                        <size key="portraitSize" width="320" height="480"/>
+                        <size key="landscapeSize" width="480" height="320"/>
                     </simulatedScreenMetrics>
                     <connections>
                         <outlet property="buildingImage" destination="M6I-cI-Ogm" id="emF-Dv-Ber"/>

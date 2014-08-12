@@ -26,7 +26,7 @@
 
 @property (strong, nonatomic) IBOutlet XYPieChart *pieChart;
 @property(nonatomic, strong) NSMutableArray *slices;
-@property(nonatomic, strong) NSMutableArray *sliceColors;
+@property(nonatomic, strong) NSArray *sliceColors;
 
 @property(nonatomic, strong) NSMutableArray *conviniArr;
 @property(nonatomic, strong) NSMutableArray *gasArr;

@@ -38,21 +38,6 @@
     //タイトル表示
     self.title = @"ジャンル別グラフ表示";
     //// グラデーション部分（アイコン表示部分）の作成
-    // レイヤーの作成
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    
-    // レイヤーサイズをビューのサイズをそろえる
-    gradient.frame = CGRectMake(0, 360, 320, 180);
-    
-    // 開始色と終了色を設定
-    gradient.colors = @[
-                        // 開始色
-                        (id)[UIColor whiteColor].CGColor,
-                        // 終了色
-                        (id)[UIColor orangeColor].CGColor];
-    
-    // レイヤーを追加
-    [self.view.layer insertSublayer:gradient atIndex:0];
     
     //// 現在地の取得処理の開始部分
     // 現在地取得開始
@@ -62,30 +47,93 @@
     locationManager_.distanceFilter = 25.0f;//25m移動するごとに測位値を返却する
     [locationManager_ startUpdatingLocation];
     
-    //// グラフ表示部分
-    self.slices = [NSMutableArray arrayWithCapacity:10];
-    
-    for(int i = 0; i < 5; i ++)
-    {
-        NSNumber *one = [NSNumber numberWithInt:rand()%10];
-        [_slices addObject:one];
+    CGRect r = [[UIScreen mainScreen] bounds];
+    // 縦の長さが480の場合、古いiPhoneだと判定
+    if(r.size.height == 480){
+        // NSLog(@"Old iPhone");
+        // レイヤーの作成
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        
+        // レイヤーサイズをビューのサイズをそろえる
+        gradient.frame = CGRectMake(0, 270, 320, 80);
+        
+        // 開始色と終了色を設定
+        gradient.colors = @[
+                            // 開始色
+                            (id)[UIColor whiteColor].CGColor,
+                            (id)[UIColor brownColor].CGColor,
+                            // 終了色
+                            (id)[UIColor whiteColor].CGColor];
+        
+        // レイヤーを追加
+        [self.view.layer insertSublayer:gradient atIndex:0];
+        //// グラフ表示部分
+        self.slices = [NSMutableArray arrayWithCapacity:10];
+        
+        for(int i = 0; i < 5; i ++)
+        {
+            NSNumber *one = [NSNumber numberWithInt:rand()%10];
+            [_slices addObject:one];
+        }
+        
+        [self.pieChart setDelegate:self];
+        [self.pieChart setDataSource:self];
+        [self.pieChart setPieCenter:CGPointMake(100,94)];
+        [self.pieChart setLabelFont:[UIFont fontWithName:@"DBLCDTempBlack" size:28]];
+        [self.pieChart setShowPercentage:NO];
+        [self.pieChart setLabelColor:[UIColor blackColor]];
+        [self.pieChart setLabelRadius:66];
+        
+        self.sliceColors =[NSArray arrayWithObjects:
+                           [UIColor colorWithRed:1 green:0.27 blue:0 alpha:1],
+                           [UIColor colorWithRed:0.486 green:1 blue:0 alpha:1],
+                           [UIColor colorWithRed:0 green:0.48 blue:1 alpha:1],
+                           [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1],
+                           [UIColor colorWithRed:0.54 green:0.55 blue:0.56 alpha:1],
+                           nil];
+    }else{
+        // NSLog(@"New iPhone");
+        // レイヤーの作成
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        
+        // レイヤーサイズをビューのサイズをそろえる
+        gradient.frame = CGRectMake(0, 360, 320, 80);
+        
+        // 開始色と終了色を設定
+        gradient.colors = @[
+                            // 開始色
+                            (id)[UIColor whiteColor].CGColor,
+                            (id)[UIColor brownColor].CGColor,
+                            // 終了色
+                            (id)[UIColor whiteColor].CGColor];
+        
+        // レイヤーを追加
+        [self.view.layer insertSublayer:gradient atIndex:0];
+        //// グラフ表示部分
+        self.slices = [NSMutableArray arrayWithCapacity:10];
+        
+        for(int i = 0; i < 5; i ++)
+        {
+            NSNumber *one = [NSNumber numberWithInt:rand()%10];
+            [_slices addObject:one];
+        }
+        
+        [self.pieChart setDelegate:self];
+        [self.pieChart setDataSource:self];
+        [self.pieChart setPieCenter:CGPointMake(130,130)];
+        [self.pieChart setLabelFont:[UIFont fontWithName:@"DBLCDTempBlack" size:28]];
+        [self.pieChart setShowPercentage:NO];
+        [self.pieChart setLabelColor:[UIColor blackColor]];
+        [self.pieChart setLabelRadius:90];
+        
+        self.sliceColors =[NSArray arrayWithObjects:
+                           [UIColor colorWithRed:1 green:0.27 blue:0 alpha:1],
+                           [UIColor colorWithRed:0.486 green:1 blue:0 alpha:1],
+                           [UIColor colorWithRed:0 green:0.48 blue:1 alpha:1],
+                           [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1],
+                           [UIColor colorWithRed:0.54 green:0.55 blue:0.56 alpha:1],
+                           nil];
     }
-    
-    [self.pieChart setDelegate:self];
-    [self.pieChart setDataSource:self];
-    [self.pieChart setPieCenter:CGPointMake(130,130)];
-    [self.pieChart setLabelFont:[UIFont fontWithName:@"DBLCDTempBlack" size:28]];
-    [self.pieChart setShowPercentage:NO];
-    [self.pieChart setLabelColor:[UIColor blackColor]];
-    [self.pieChart setLabelRadius:90];
-    
-    self.sliceColors =[NSArray arrayWithObjects:
-                       [UIColor colorWithRed:1 green:0.27 blue:0 alpha:1],
-                       [UIColor colorWithRed:0.486 green:1 blue:0 alpha:1],
-                       [UIColor colorWithRed:0 green:0.48 blue:1 alpha:1],
-                       [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1],
-                       [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1],
-                       nil];
     
     //NSLog(@"%@",[self.sliceColors description]);
     
@@ -275,11 +323,11 @@
             //[self.sliceColors replaceObjectAtIndex:0 withObject:[UIColor colorWithRed:1 green:0.27 blue:0 alpha:1]];
         }else if (convini_d < 1000){
             self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.4];
-            [self.conviniImage.layer setCornerRadius:10];
+            [self.conviniImage.layer setCornerRadius:20];
             //[self.sliceColors replaceObjectAtIndex:0 withObject:[UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.5]];
         }else{
             self.conviniImage.backgroundColor = [UIColor colorWithRed:1 green:0.27 blue:0 alpha:0.2];
-            [self.conviniImage.layer setCornerRadius:10];
+            [self.conviniImage.layer setCornerRadius:30];
         }
     }
     
@@ -296,11 +344,11 @@
             //[self.sliceColors replaceObjectAtIndex:1 withObject:[UIColor colorWithRed:0.486 green:1 blue:0 alpha:1]];
         }else if (shop_d < 1000){
             self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.4];
-            [self.shopImage.layer setCornerRadius:10];
+            [self.shopImage.layer setCornerRadius:20];
             //[self.sliceColors replaceObjectAtIndex:1 withObject:[UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.5]];
         }else{
             self.shopImage.backgroundColor = [UIColor colorWithRed:0.486 green:1 blue:0 alpha:0.2];
-            [self.shopImage.layer setCornerRadius:10];
+            [self.shopImage.layer setCornerRadius:30];
         }
     }
     
@@ -317,11 +365,11 @@
             //[self.sliceColors replaceObjectAtIndex:2 withObject:[UIColor colorWithRed:0 green:0.48 blue:1 alpha:1]];
         }else if (gas_d < 1000){
             self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.4];
-            [self.gsImage.layer setCornerRadius:10];
+            [self.gsImage.layer setCornerRadius:20];
             //[self.sliceColors replaceObjectAtIndex:2 withObject:[UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.5]];
         }else{
             self.gsImage.backgroundColor = [UIColor colorWithRed:0 green:0.48 blue:1 alpha:0.2];
-            [self.gsImage.layer setCornerRadius:10];
+            [self.gsImage.layer setCornerRadius:30];
         }
     }
     
@@ -338,11 +386,11 @@
             //[self.sliceColors replaceObjectAtIndex:3 withObject:[UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:1]];
         }else if (food_d < 1000){
             self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.4];
-            [self.gourmetImage.layer setCornerRadius:10];
+            [self.gourmetImage.layer setCornerRadius:20];
             //[self.sliceColors replaceObjectAtIndex:3 withObject:[UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.5]];
         }else{
             self.gourmetImage.backgroundColor = [UIColor colorWithRed:1.0 green:0 blue:0.804 alpha:0.2];
-            [self.gourmetImage.layer setCornerRadius:10];
+            [self.gourmetImage.layer setCornerRadius:30];
         }
     }
     
@@ -354,16 +402,16 @@
         self.buildingImage.hidden = NO;
         self.buildingImageG.hidden = YES;
         if (other_d < 300) {
-            self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1];
+            self.buildingImage.backgroundColor = [UIColor colorWithRed:0.54 green:0.55 blue:0.56 alpha:1];
             [self.buildingImage.layer setCornerRadius:10];
             //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:1]];
         }else if (other_d < 1000){
-            self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.4];
-            [self.buildingImage.layer setCornerRadius:10];
+            self.buildingImage.backgroundColor = [UIColor colorWithRed:0.54 green:0.55 blue:0.56 alpha:0.4];
+            [self.buildingImage.layer setCornerRadius:20];
             //[self.sliceColors replaceObjectAtIndex:4 withObject:[UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.5]];
         }else{
-            self.buildingImage.backgroundColor = [UIColor colorWithRed:0.74 green:0.75 blue:0.76 alpha:0.2];
-            [self.buildingImage.layer setCornerRadius:10];
+            self.buildingImage.backgroundColor = [UIColor colorWithRed:0.54 green:0.55 blue:0.56 alpha:0.2];
+            [self.buildingImage.layer setCornerRadius:30];
         }
     }
 }
